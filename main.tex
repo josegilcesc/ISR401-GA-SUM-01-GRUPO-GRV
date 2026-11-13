@@ -65,6 +65,27 @@
 	\subsection{Clasificación del Sistema}
 	El Proyecto Fin de Curso (PFC) se clasifica como un \textbf{Sistema de Información Transaccional Intensivo en Software} acoplado a un \textbf{Sistema Adaptativo/Inteligente}. Justificación: El núcleo del sistema gestiona el procesamiento concurrente de datos estructurados (inventario y facturación) soportado por una base de datos relacional (PostgreSQL) y máquinas virtuales, lo cual es propio de sistemas empresariales intensivos en software. Simultáneamente, la integración de la IA GROQ para el procesamiento de lenguaje natural y generación de sugerencias añade una capa de sistema inteligente capaz de inferir necesidades técnicas en tiempo real.
 	
+	\section{Paso 2: Revisión Bibliográfica}
+	Las fuentes primarias obligatorias han sido registradas mediante el gestor bibliográfico Zotero en formato IEEE comprimido, generando la bibliografía automatizada del presente documento. 
+	La captura de pantalla que evidencia el uso de Zotero con las fuentes primarias (IEEE 29148, Pohl, SWEBOK, ISO 25010) se encuentra adjunta en el \textbf{Anexo B}.
+	
+	\section{Paso 3: Fundamento Teórico de Ingeniería de Requisitos}
+	
+	\subsection{2.1 Fundamentos de la Ingeniería de Requisitos (Desarrollado por Jostin G. Vélez)}
+	\textbf{Definición Formal:} La ingeniería de requisitos es una función interdisciplinaria que media entre los dominios del adquirente y el proveedor para establecer y mantener los requisitos que debe cumplir el sistema, software o servicio de interés \cite{ieee29148}. Se ocupa de descubrir, elicitar, desarrollar, analizar, verificar, validar, comunicar, documentar y gestionar dichos requisitos a lo largo de todo el ciclo de vida \cite{ieee29148}. Además, los fundamentos dictan que un requisito es una propiedad que debe exhibirse para resolver un problema del mundo real \cite{swebok2024}.
+	
+	\textbf{Explicación Propia:} La ingeniería de requisitos no consiste simplemente en actuar como un transcriptor de lo que el cliente desea pedir, sino que es un proceso analítico y de ingeniería profundo. Implica comprender la naturaleza del problema de negocio subyacente y transformar esas necesidades vagas y a veces contradictorias en especificaciones técnicas concretas, medibles y viables. Si esta disciplina se aplica de forma deficiente, los errores se propagarán por cascada hacia el diseño y la codificación, multiplicando exponencialmente los costos de corrección y el riesgo de fracaso del proyecto.
+	
+	\textbf{Ejemplo Vinculado al PFC:} En la Plataforma de Ventas para locales eléctricos, el problema del mundo real era la lentitud en facturación y la falta de capacitación del personal. Aplicar la ingeniería de requisitos nos permitió no solo anotar "hacer un sistema más rápido", sino descubrir la necesidad subyacente de asesoría, transformándola en un requisito técnico formal que exige la implementación de una IA (GROQ) que entregue tres sugerencias de productos compatibles en menos de 3 segundos.
+	
+	\subsection{2.2 Categorías y Tipos de Requisitos (Desarrollado por Jostin G. Vélez)}
+	\textbf{Definición Formal:} Los requisitos se categorizan fundamentalmente en funcionales y no funcionales \cite{swebok2024}. Los requisitos funcionales especifican los comportamientos observables que el software debe proporcionar, las políticas que se deben hacer cumplir y los procesos que se deben llevar a cabo \cite{swebok2024}. Los requisitos no funcionales restringen las tecnologías que se utilizarán en la implementación (restricciones tecnológicas) o especifican niveles de rendimiento aceptables (restricciones de calidad de servicio) \cite{swebok2024}. Todo requisito bien formado debe ser necesario, apropiado, inambiguo, completo, singular, factible, verificable, correcto y conforme \cite{ieee29148}.
+	
+	\textbf{Explicación Propia:} Separar los requisitos funcionales de los no funcionales (atributos de calidad) es la clave para manejar la complejidad arquitectónica del sistema. Los funcionales describen el "qué" hará el sistema para interactuar con los actores de negocio, mientras que los no funcionales describen el "cómo" y "qué tan bien" lo hará, imponiendo los límites de rendimiento, seguridad y disponibilidad. Utilizar el filtro de "tecnología perfecta" ayuda a discernir si un requisito existiría incluso con recursos computacionales infinitos, identificándolo así como funcional puro.
+	
+	\textbf{Ejemplo Vinculado al PFC:} Un requisito funcional claro en nuestro PFC es que el sistema procese el pago mediante la integración con pasarelas de pago externas cuando el cajero seleccione la opción de tarjeta. Por el contrario, un requisito no funcional (calidad de servicio) es que el sistema devuelva las sugerencias de la IA GROQ en 3 segundos o menos para el 95\% de las consultas, imponiendo una restricción estricta de rendimiento sobre esa función.
+	
+	
 	\section{Referencias}
 	\printbibliography[heading=none]
 	
