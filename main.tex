@@ -52,4 +52,20 @@
 	\subsection{Descripción del Sistema del PFC}
 	El sistema consiste en una Plataforma de Ventas con un módulo de recomendación basado en Inteligencia Artificial (IA GROQ) para establecimientos de productos eléctricos en Quevedo. Resuelve la problemática actual de facturación lenta, interfaces deficientes y atención al cliente entorpecida por personal no calificado para brindar recomendaciones técnicas precisas sobre productos eléctricos. Los usuarios principales son los cajeros (quienes fungen como atención al cliente), el administrador, el propietario del local, el cliente activo y los auditores externos. El contexto organizacional exige alta disponibilidad operativa y reducción drástica de errores de digitación en horas pico.
 	
+	
+	\subsection{Stakeholders (Matriz Poder/Interés PMBOK \cite{pmbok})}
+	\begin{enumerate}
+		\item \textbf{Cajero (Atención al Cliente):} Bajo Poder / Alto Interés (Mantener Informado). Actor interno principal que sufre estrés por el sistema actual y requiere la interfaz rápida y la IA.
+		\item \textbf{Administrador:} Alto Poder / Alto Interés (Gestionar Atentamente). Actor interno que requiere gestionar el inventario en tiempo real y supervisar el rendimiento operativo del local.
+		\item \textbf{Propietario del Local:} Alto Poder / Medio Interés (Mantener Satisfecho). Actor interno que financia el proyecto y necesita auditar ganancias y control del establecimiento.
+		\item \textbf{Cliente Activo:} Bajo Poder / Alto Interés (Mantener Informado). Actor externo que busca atención ágil y recomendaciones técnicas útiles y reales sobre los productos eléctricos.
+		\item \textbf{Auditor:} Alto Poder / Bajo Interés (Mantener Satisfecho). Actor interno que requiere un registro trazable y confiable de todas las transacciones de ventas y pagos generados en el sistema.
+	\end{enumerate}
+	
+	\subsection{Clasificación del Sistema}
+	El Proyecto Fin de Curso (PFC) se clasifica como un \textbf{Sistema de Información Transaccional Intensivo en Software} acoplado a un \textbf{Sistema Adaptativo/Inteligente}. Justificación: El núcleo del sistema gestiona el procesamiento concurrente de datos estructurados (inventario y facturación) soportado por una base de datos relacional (PostgreSQL) y máquinas virtuales, lo cual es propio de sistemas empresariales intensivos en software. Simultáneamente, la integración de la IA GROQ para el procesamiento de lenguaje natural y generación de sugerencias añade una capa de sistema inteligente capaz de inferir necesidades técnicas en tiempo real.
+	
+	\section{Referencias}
+	\printbibliography[heading=none]
+	
 \end{document}
