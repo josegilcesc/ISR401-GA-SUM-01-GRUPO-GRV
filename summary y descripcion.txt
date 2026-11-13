@@ -1,2 +1,0 @@
-summary: Adición de stakeholders y clasificación del sistema PFC
-descripcion: Se completa el Paso 1 añadiendo las subsecciones 1.3 y 1.4. Se documenta la matriz de poder/interés y se clasifica el tipo de sistema. Se actualiza el archivo referencias.bib para incluir la fuente del PMBOK utilizada en esta sección.
