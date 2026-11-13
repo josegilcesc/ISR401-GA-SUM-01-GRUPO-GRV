@@ -1,0 +1,55 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[backend=biber,style=ieee,sorting=none,url=true,doi=true,isbn=true]{biblatex}
+
+\addbibresource{referencias.bib}
+
+\usepackage{enumitem}
+\setlist[enumerate]{leftmargin=*,itemsep=1pt,topsep=2pt}
+\setlist[itemize]{leftmargin=*,itemsep=1pt,topsep=2pt}
+\setlength{\parindent}{0.65em}
+\setlength{\parskip}{1pt}
+\renewcommand{\arraystretch}{1.2}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\DefineBibliographyStrings{spanish}{bibliography={Referencias}}
+\urlstyle{same}
+
+\title{Práctica Experimental Unidad I: Ingeniería y Proceso de Requisitos\\
+	\large Plataforma de Ventas con Módulo de Recomendación basado en IA (PFC)}
+
+\author{
+	\IEEEauthorblockN{José Ignacio Gilces Carranza, Jostin Gustavo Vélez Vinces, Jeanpierre Robinson Espinoza}
+	\IEEEauthorblockA{Universidad Técnica Estatal de Quevedo (UTEQ) --- Facultad de Ciencias de la Computación\\
+		Ingeniería de Software $\cdot$ Ingeniería de Requerimientos (ISR-401) $\cdot$ PE-U1}
+}
+
+\begin{document}
+	\onecolumn
+	\maketitle
+	
+	\section{Paso 1: Conformación del Equipo y Selección del Sistema}
+	\subsection{Roles del Equipo}
+	\begin{itemize}
+		\item \textbf{Analista Líder:} José Ignacio Gilces Carranza (coordina, revisa coherencia y citas).
+		\item \textbf{Investigador A:} Jostin Gustavo Vélez Vinces (desarrolla secciones 2.1 - 2.2).
+		\item \textbf{Investigador B:} José Ignacio Gilces Carranza (desarrolla secciones 2.3 - 2.4).
+		\item \textbf{Investigador C y Documentador:} Jeanpierre Robinson Espinoza (desarrolla secciones 2.5 - 2.6 y maquetación).
+	\end{itemize}
+	
+	\subsection{Descripción del Sistema del PFC}
+	El sistema consiste en una Plataforma de Ventas con un módulo de recomendación basado en Inteligencia Artificial (IA GROQ) para establecimientos de productos eléctricos en Quevedo. Resuelve la problemática actual de facturación lenta, interfaces deficientes y atención al cliente entorpecida por personal no calificado para brindar recomendaciones técnicas precisas sobre productos eléctricos. Los usuarios principales son los cajeros (quienes fungen como atención al cliente), el administrador, el propietario del local, el cliente activo y los auditores externos. El contexto organizacional exige alta disponibilidad operativa y reducción drástica de errores de digitación en horas pico.
+	
+\end{document}
