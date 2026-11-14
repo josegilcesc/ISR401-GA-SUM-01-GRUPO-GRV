@@ -1,0 +1,130 @@
+% APORTE SEGUNDO AVANCE - GILCES CARRANZA JOSE IGNACIO (CI: 1251059240)
+% Incluye: Corrección Sección 0 (Cédulas/Correos), Secciones 2.3 y 2.4, Paso 4 (15 Requisitos EARS/ISO 25010) y Criterio C2 (Matriz IEEE 29148)
+
+\section{Sección 0: Conformación del Equipo y Selección del Sistema (Paso 1)}
+
+\subsection{Roles y Nominación Oficial del Equipo}
+De acuerdo con los lineamientos de la Guía de Práctica Experimental y los Gatekeepers de evaluación (\textit{G2: Todos los integrantes nominados}), en la Tabla \ref{tab:integrantes} se registra la nominación oficial del equipo de trabajo, sus números de cédula de ciudadanía, correos electrónicos institucionales de la Universidad Técnica Estatal de Quevedo (UTEQ) y los roles técnicos desempeñados durante el desarrollo del proyecto \cite{ieee29148, pmbok}.
+
+\begin{table}[htbp]
+\centering
+\caption{Nominación Oficial de Integrantes y Asignación de Roles del Equipo}
+\label{tab:integrantes}
+\begin{tabularx}{\textwidth}{l l l Y}
+\toprule
+\textbf{Integrante (Apellidos y Nombres)} & \textbf{Cédula (CI)} & \textbf{Correo Institucional} & \textbf{Rol Asignado y Responsabilidades} \\
+\midrule
+Gilces Carranza José Ignacio & 1251059240 & \texttt{jgilcesc3@uteq.edu.ec} & \textbf{Analista Líder e Investigador B:} Coordina la integración técnica, verifica la coherencia argumental y citas IEEE, desarrolla las secciones 2.3--2.4 y lidera la especificación EARS y evaluación de propiedades (C1, C2). \\
+Vélez Vinces Jostin Gustavo & 1316917838 & \texttt{jvelezv10@uteq.edu.ec} & \textbf{Investigador A:} Desarrolla las secciones 2.1--2.2 del fundamento teórico, define el límite del sistema, la declaración de visión de Moore, el análisis de las 8 perspectivas de Pohl y el mapa conceptual. \\
+Robinson Espinoza Jeanpierre & 1722574223 & \texttt{jrobinsone@uteq.edu.ec} & \textbf{Investigador C y Documentador:} Desarrolla las secciones 2.5--2.6, estructura el mapeo de actores y artefactos del proceso (C3, C4), gestiona Zotero y maqueta el documento final bajo estándar IEEE. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Descripción del Sistema del Proyecto Fin de Curso (PFC)}
+El sistema seleccionado para el Proyecto Fin de Curso (PFC) consiste en una \textbf{Plataforma Web de Punto de Venta (POS) con Módulo de Asistencia Técnica basado en Inteligencia Artificial (API Groq)} orientada a establecimientos comercializadores de suministros y materiales eléctricos en el cantón Quevedo, provincia de Los Ríos. El sistema resuelve la problemática crítica de facturación lenta en horas pico, interfaces de usuario poco ergonómicas y pérdida de ventas ocasionada por personal de mostrador sin formación electrotécnica para recomendar componentes compatibles o sustitutos seguros (como disyuntores termomagnéticos, contactores, conductores calibres AWG o luminarias industriales). Los usuarios principales son los cajeros (atención al cliente), el administrador del almacén, el propietario del establecimiento, los clientes activos y los auditores tributarios/contables. El contexto organizacional demanda alta disponibilidad operativa, cumplimiento estricto de facturación electrónica ante el Servicio de Rentas Internas (SRI) y reducción drástica de errores de digitación.
+
+
+\subsection Taxonomía Detallada de Requisitos (Desarrollado por José I. Gilces)}
+
+\subsubsection{Concepto 1: Requisitos de Interfaz, de Datos, de Rendimiento, de Conformidad y Restricciones}
+\textbf{Definición Formal:} La norma ISO/IEC/IEEE 29148:2018 (cláusula 5.2.8) \cite{ieee29148} y el estándar de calidad ISO/IEC 25010:2023 \cite{iso25010} establecen una taxonomía granular para clasificar las especificaciones de un sistema:
+\begin{enumerate}
+    \item \textbf{Requisitos de Interfaz Externa:} Definen los límites compartidos entre el software y elementos externos, subdividiéndose en interfaces de usuario (UI), hardware (HW), software/API (SW) y comunicaciones (COM) \cite{ieee29148}.
+    \item \textbf{Requisitos de Rendimiento (\textit{Performance Efficiency}):} Cuantifican el comportamiento temporal (latencia, tiempo de respuesta, \textit{throughput}) y la utilización de recursos bajo cargas determinadas \cite{iso25010}.
+    \item \textbf{Restricciones de Diseño e Implementación (\textit{Constraints}):} Decisiones arquitectónicas, tecnológicas o de entorno preimpuestas que limitan la libertad del ingeniero de software \cite{pohl2025, swebok2024}.
+    \item \textbf{Requisitos de Conformidad Regulatoria y Legal:} Mandatos derivados de leyes gubernamentales, normativas fiscales o estándares industriales obligatorios \cite{ieee29148, ireb2023}.
+\end{enumerate}
+
+\textbf{Explicación Propia:} Una taxonomía detallada evita que el documento de especificación de requisitos (SRS) se convierta en un listado amorfo de peticiones mezcladas. Clasificar explícitamente los requisitos de interfaz obliga al arquitecto de software a diseñar protocolos de comunicación robustos, manejo de excepciones y formatos de serialización antes de programar. Del mismo modo, aislar las restricciones tecnológicas y de conformidad legal protege al equipo de desarrollo de proponer herramientas o flujos comerciales que, aunque técnicamente elegantes, violarían la legislación tributaria ecuatoriana o resultarían incompatibles con el hardware del cliente.
+
+\textbf{Ejemplo Vinculado al PFC:} En el PFC se aplican todas estas subcategorías: como \textit{Interfaz de Hardware}, el sistema lee códigos EAN-13 mediante escáneres USB bajo emulación HID; como \textit{Interfaz de Software}, se integra vía HTTPS/JSON con la API de Groq Cloud; como \textit{Restricción de Diseño}, el backend debe desarrollarse en Python/Django sobre contenedores Docker con base de datos PostgreSQL; y como \textit{Conformidad Legal}, cada factura cumple con la Ficha Técnica de Comprobantes Electrónicos del SRI y la Ley Orgánica de Protección de Datos Personales (LOPDP) del Ecuador.
+
+\subsubsection{Concepto 2: Sintaxis Estructurada EARS y Priorización MoSCoW}
+\textbf{Definición Formal:} El enfoque EARS (\textit{Easy Approach to Requirements Syntax}), formulado por Mavin et al. \cite{mavin2009ears}, reduce la ambigüedad del lenguaje natural mediante cinco patrones sintácticos estructurados: \textit{Ubiquitous} (``The <system> shall <response>''), \textit{Event-driven} (``WHEN <trigger>, the <system> shall <response>''), \textit{State-driven} (``WHILE <state>, the <system> shall <response>''), \textit{Unwanted behavior} (``IF <condition>, THEN the <system> shall <response>'') y \textit{Optional} (``WHERE <feature>, the <system> shall <response>'') \cite{mavin2009ears}. Complementariamente, la técnica MoSCoW (\textit{Must have, Should have, Could have, Won't have}) clasifica la prioridad de entrega en función del valor crítico y el riesgo operativo \cite{ireb2023, wiegers2013}.
+
+\textbf{Explicación Propia:} Redactar requisitos en prosa libre suele introducir verbos pasivos, cláusulas condicionales confusas y lagunas sobre qué evento dispara cada acción del sistema. Adoptar los patrones de EARS impone una disciplina gramatical rigurosa donde cada requisito funcional declara explícitamente su precondición o evento disparador, el actor o subsistema responsable y la respuesta determinista esperada. Al combinar esta precisión sintáctica con la priorización MoSCoW, el equipo garantiza que el Producto Mínimo Viable (MVP) concentre los esfuerzos de ingeniería en las capacidades vitales (\textit{Must}) sin descuidar la planificación evolutiva de mejoras deseables (\textit{Should/Could}).
+
+\textbf{Ejemplo Vinculado al PFC:} En lugar de redactar vagamente ``el sistema debe manejar fallos de internet con la IA'', aplicamos el patrón de comportamiento no deseado (\textit{Unwanted behavior}) de EARS: ``\textit{IF the Groq API service returns a timeout exceeding 3.0 seconds or HTTP error 5xx, THEN the POS System shall display a local fallback recommendation list based on predefined product category rules within 200 ms}''. Asimismo, la facturación electrónica SRI se prioriza como \textit{Must Have}, mientras que el modo oscuro de la interfaz se clasifica como \textit{Could Have}.
+
+\subsection{2.4 Propiedades de Calidad de los Requisitos según IEEE 29148 (Desarrollado por José I. Gilces)}
+
+\subsubsection{Concepto 1: Propiedades de Calidad de un Requisito Individual}
+\textbf{Definición Formal:} La norma ISO/IEC/IEEE 29148:2018 (cláusula 5.2.5) estipula que toda declaración de requisito individual bien formada debe satisfacer nueve características esenciales: (1) \textbf{Necesario} (su omisión provoca una deficiencia no mitigada), (2) \textbf{Apropiado al nivel} (sin detalles innecesarios de implementación), (3) \textbf{Sin ambigüedad / Inambiguo} (admite una única interpretación semántica), (4) \textbf{Completo} (describe totalmente la capacidad sin requerir amplificaciones), (5) \textbf{Singular} (expresa una sola función o restricción sin conjunciones múltiples), (6) \textbf{Factible} (realizable dentro de restricciones técnicas, de costo y cronograma), (7) \textbf{Verificable} (susceptible de ser probado mediante inspección, análisis, demostración o prueba cuantitativa), (8) \textbf{Correcto} (representa fielmente la necesidad real del stakeholder) y (9) \textbf{Conforme} (respeta el estilo y plantilla estándar, como EARS) \cite{ieee29148, pohl2025}.
+
+\textbf{Explicación Propia:} Evaluar cada requisito individual contra estas nueve propiedades constituye el primer filtro de aseguramiento de calidad (QA) en la ingeniería de software. Un requisito que carece de verificabilidad o utiliza adjetivos subjetivos como ``rápido'', ``intuitivo'' o ``eficiente'' resulta imposible de probar objetivamente en la fase de validación, generando disputas contractuales entre desarrolladores y clientes. De igual manera, garantizar la singularidad evita los llamados ``requisitos compuestos'', donde el fallo de una subcondición secundaria bloquea la aprobación de toda una funcionalidad crítica durante las pruebas de aceptación.
+
+\textbf{Ejemplo Vinculado al PFC:} Si en nuestro PFC escribiéramos ``El sistema buscará productos rápido y permitirá exportar reportes amigables'', violaríamos las propiedades de \textit{Singularidad} (mezcla búsqueda y exportación), \textit{Inambigüedad} y \textit{Verificabilidad} (``rápido'' y ``amigables'' son subjetivos). Corrigiéndolo bajo IEEE 29148, lo separamos en un requisito singular y verificable: ``\textit{WHEN the cashier enters at least 3 alphanumeric characters in the search bar, the POS System shall return matching electrical products from PostgreSQL in less than 250 ms for catalogs up to 50,000 SKUs}''.
+
+\subsubsection{Concepto 2: Propiedades de Calidad del Conjunto de Requisitos (SRS Completa)}
+\textbf{Definición Formal:} Además de la calidad individual, ISO/IEC/IEEE 29148:2018 (cláusula 5.2.6) define las características que debe exhibir el conjunto integrado de requisitos dentro de una especificación (SRS): (1) \textbf{Completo} (contiene todos los requisitos relevantes, escenarios operativos e interfaces sin elementos ``TBD''), (2) \textbf{Consistente} (libre de contradicciones lógicas, temporales o terminológicas entre requisitos), (3) \textbf{Asequible / Factible en conjunto} (el sistema completo puede construirse dentro del presupuesto y plazo global), (4) \textbf{Acotado} (mantiene el alcance alineado a los objetivos de negocio sin \textit{scope creep}) y (5) \textbf{Trazable} (tanto hacia atrás —origen/stakeholder— como hacia adelante —diseño, código y casos de prueba—) \cite{ieee29148, swebok2024}.
+
+\textbf{Explicación Propia:} Es perfectamente posible tener decenas de requisitos individualmente bien redactados que, al juntarse en un mismo documento, colisionen entre sí o desborden el presupuesto del proyecto. La consistencia del conjunto asegura que una regla de seguridad no bloquee una exigencia de velocidad operativa en mostrador, mientras que la trazabilidad bidireccional permite realizar análisis de impacto precisos cuando el cliente solicita un cambio a mitad del semestre. Sin trazabilidad, cualquier modificación normativa o comercial obliga a revisar manualmente todo el sistema, elevando el riesgo de regresiones ocultas.
+
+\textbf{Ejemplo Vinculado al PFC:} Durante el análisis del PFC detectamos un conflicto de \textit{Consistencia}: un requisito inicial de seguridad exigía reautenticación con contraseña del cajero antes de cada consulta a la IA Groq, lo cual contradecía el requisito de rendimiento que exige completar la recomendación en menos de 3.0 segundos durante la venta. Al auditar el conjunto bajo IEEE 29148, se resolvió utilizar tokens de sesión JWT activos por turno de caja, preservando tanto la seguridad como la agilidad operativa y manteniendo la trazabilidad hacia el stakeholder Cajero (SH-01).
+
+
+\section{Sección 3: Artefactos del Procedimiento y Aplicación al PFC (Pasos 4 y 5)}
+
+\subsection{Paso 4 y Criterio C1: Identificación y Clasificación de Requisitos Aplicada al PFC}
+En cumplimiento del Paso 4 de la Guía de Práctica y del Criterio C1 de la Rúbrica SGA (\textit{al menos 15 requisitos únicos con identificador, RF con sintaxis EARS \cite{mavin2009ears}, RNF cuantificados bajo ISO/IEC 25010:2023 \cite{iso25010}, interfaces tipificadas y priorización MoSCoW \cite{ireb2023}}), en la Tabla \ref{tab:requisitos_pfc} se especifican los 15 requisitos estructurales de la Plataforma de Ventas con Módulo de Recomendación IA (Groq).
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Catálogo de 15 Requisitos Únicos del PFC (Sintaxis EARS \cite{mavin2009ears}, ISO/IEC 25010:2023 \cite{iso25010} y MoSCoW)}
+\label{tab:requisitos_pfc}
+\begin{tabularx}{\textwidth}{l l Y l l}
+\toprule
+\textbf{ID} & \textbf{Tipo / Categoría} & \textbf{Descripción Formal (Sintaxis EARS \cite{mavin2009ears} / Cuantificación ISO 25010 \cite{iso25010})} & \textbf{MoSCoW} & \textbf{Fuente} \\
+\midrule
+REQ-01 & Negocio (BR) & \textit{The POS Platform shall} reducir el tiempo promedio de facturación y asesoría técnica en mostrador de 240 segundos a un máximo de 60 segundos por cliente durante el primer trimestre de operación comercial. & Must & Propietario (SH-03) \\
+REQ-02 & Stakeholder (StR) & \textbf{WHEN} un cliente solicita un componente eléctrico agotado o desconoce su especificación técnica, \textit{the Cashier shall} poder consultar alternativas compatibles validadas con stock disponible desde la misma pantalla de facturación. & Must & Cajero (SH-01) \\
+REQ-03 & Usuario (UR) & \textbf{WHILE} el módulo de cobro rápido está activo, \textit{the POS System shall} permitir al cajero ejecutar el ciclo completo de búsqueda, agregación de ítems, consulta IA y emisión de factura empleando exclusivamente atajos de teclado (F1--F12) sin requerir el uso del ratón. & Should & Cajero (SH-01) \\
+REQ-04 & Funcional (RF) & \textbf{WHEN} el cajero ingresa un código SKU o consulta técnica en el asistente inteligente, \textit{the POS System shall} invocar el modelo LLM vía API Groq filtrando el catálogo local de PostgreSQL y presentar exactamente 3 productos eléctricos compatibles con su amperaje, voltaje, precio y stock real. & Must & Cajero (SH-01) / Analista \\
+REQ-05 & Funcional (RF) & \textbf{WHEN} el cajero confirma el cierre de una venta en efectivo, tarjeta o transferencia, \textit{the POS System shall} calcular el subtotal, aplicar la tarifa vigente de IVA (15\%), descontar atómicamente las unidades del inventario y registrar el asiento transaccional en PostgreSQL. & Must & Administrador (SH-02) \\
+REQ-06 & Funcional (RF) & \textbf{IF} el stock disponible de un suministro eléctrico en la base de datos es igual a cero o inferior a la cantidad solicitada, \textbf{THEN} \textit{the POS System shall} bloquear la facturación de dicho ítem y desplegar automáticamente el panel de productos sustitutos sugeridos por la IA Groq. & Must & Administrador (SH-02) \\
+REQ-07 & Funcional (RF) & \textbf{WHEN} una factura es emitida en el punto de venta, \textit{the POS System shall} generar el archivo XML bajo el estándar XSD v2.1.0 del SRI, firmarlo digitalmente con certificado electrónico PKCS\#12 (\texttt{.p12}) y transmitirlo al Web Service de Autorización del SRI. & Must & Auditor / SRI (SH-05) \\
+REQ-08 & Rendimiento / NFR & \textbf{[ISO/IEC 25010:2023 -- Eficiencia de Desempeño / Comportamiento Temporal \cite{iso25010}]:} \textbf{WHEN} el cajero solicita una recomendación técnica al módulo de IA Groq, \textit{the POS System shall} renderizar las 3 sugerencias en pantalla en un tiempo máximo de $\le 3.0\text{ segundos}$ para el 95\% de las peticiones bajo carga concurrente de hasta 10 cajas. & Must & Cajero (SH-01) / Arquitecto \\
+REQ-09 & Rendimiento / NFR & \textbf{[ISO/IEC 25010:2023 -- Eficiencia de Desempeño / Capacidad y Tiempo de Respuesta \cite{iso25010}]:} \textbf{WHEN} se realizan búsquedas predictivas de productos o confirmación de cobros locales, \textit{the POS System shall} responder en $\le 250\text{ milisegundos}$ soportando un catálogo activo de hasta 50,000 SKUs eléctricos y 500 transacciones por hora. & Must & Administrador (SH-02) \\
+REQ-10 & NFR (Fiabilidad) & \textbf{[ISO/IEC 25010:2023 -- Fiabilidad / Disponibilidad y Tolerancia a Fallos \cite{iso25010}]:} \textit{The POS System shall} garantizar una disponibilidad operativa del $\ge 99.5\%$ en horario comercial (08h00--19h00); \textbf{IF} la API de Groq o el internet externo fallan (timeout $>3.0\text{ s}$), \textbf{THEN} el sistema activará un motor local de reglas SQL en $\le 200\text{ ms}$ sin interrumpir la facturación. & Must & Propietario (SH-03) \\
+REQ-11 & NFR (Seguridad) & \textbf{[ISO/IEC 25010:2023 -- Seguridad / Confidencialidad, Integridad y No Repudio \cite{iso25010}]:} \textit{The POS System shall} autenticar a los usuarios mediante tokens JWT con expiración de 8 horas, cifrar credenciales con algoritmo \texttt{bcrypt} (factor de costo $\ge 12$) y registrar cada transacción o anulación en una tabla de auditoría inmutable con sello de tiempo UTC. & Must & Auditor / SRI (SH-05) \\
+REQ-12 & NFR (Usabilidad) & \textbf{[ISO/IEC 25010:2023 -- Capacidad de Interacción / Aprendizabilidad y Operabilidad \cite{iso25010}]:} \textit{The POS System shall} presentar una interfaz web responsiva con contraste visual WCAG 2.1 nivel AA que permita a un cajero nuevo sin experiencia técnica completar su primera venta asistida por IA en menos de 15 minutos de inducción, con una tasa de error de digitación $< 1\%$. & Should & Cajero (SH-01) \\
+REQ-13 & Interfaz (UI / HW) & \textbf{[Tipo de Interfaz: Usuario (UI) y Hardware (HW) \cite{ieee29148}]:} \textit{The POS System shall} capturar entradas de códigos de barras EAN-13/Code-128 desde lectores ópticos USB/HID a una velocidad de $\ge 30\text{ lecturas/min}$ y enviar tramas de impresión de tickets de 80 mm mediante protocolo ESC/POS sobre puerto USB/LAN en $\le 1.5\text{ segundos}$. & Must & Cajero (SH-01) \\
+REQ-14 & Interfaz (SW / COM) & \textbf{[Tipo de Interfaz: Software (SW) y Comunicaciones (COM) \cite{ieee29148}]:} \textit{The POS System shall} comunicarse con el endpoint REST de Groq Cloud (\texttt{https://api.groq.com/openai/v1/chat/completions}) sobre protocolo HTTPS con cifrado TLS 1.3 e intercambio de payloads JSON estructurados, y con los Web Services SOAP del SRI Ecuador mediante TLS 1.2+. & Must & Arquitecto / SRI (SH-05) \\
+REQ-15 & Restricción y Conformidad & \textbf{[Restricción Tecnológica y Conformidad Legal \cite{ieee29148, pohl2025}]:} \textit{The POS System shall} implementarse utilizando Python 3.12 (Django) en el backend, PostgreSQL 16 en contenedores Docker sobre Ubuntu Server, cumpliendo obligatoriamente con la Ficha Técnica de Comprobantes Electrónicos del SRI Ecuador y la Ley Orgánica de Protección de Datos Personales (LOPDP). & Must & Propietario / SRI (SH-05) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Criterio C2: Evaluación de las Propiedades de Calidad de los Requisitos según IEEE 29148}
+Para satisfacer con excelencia el Criterio C2 de la Rúbrica SGA (\textit{20\% de la nota: Cada requisito evaluado contra las propiedades de IEEE 29148 —necesidad, verificabilidad, sin ambigüedad, trazabilidad, singularidad, factibilidad, completitud— con argumentación verificable} \cite{ieee29148}), en la Tabla \ref{tab:evaluacion_calidad} se presenta la auditoría formal de calidad aplicada a los 15 requisitos del PFC, detallando el método de verificación técnico y la justificación analítica de cumplimiento.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Matriz de Evaluación de Propiedades de Calidad por Requisito según ISO/IEC/IEEE 29148:2018 (Cláusula 5.2.5) \cite{ieee29148}}
+\label{tab:evaluacion_calidad}
+\begin{tabularx}{\textwidth}{l c c c c c c Y}
+\toprule
+\textbf{ID Req.} & \textbf{Nec.} & \textbf{Inamb.} & \textbf{Comp.} & \textbf{Sing.} & \textbf{Fact.} & \textbf{Verif.} & \textbf{Argumentación Verificable, Criterio de Prueba y Trazabilidad (IEEE 29148) \cite{ieee29148}} \\
+\midrule
+REQ-01 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Prueba / Medición Estadística.} Es inambiguo y verificable porque fija una línea base cuantitativa (de 240 s a $\le 60\text{ s}$) y un horizonte temporal exacto (1er trimestre). Trazable hacia atrás a SH-03 y hacia adelante a REQ-04 y REQ-08. \\
+REQ-02 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Demostración Funcional.} Cumple singularidad y necesidad al enfocarse exclusivamente en la consulta de sustitutos en mostrador ante rotura de stock o duda técnica. Trazable a SH-01 y al módulo UI de caja. \\
+REQ-03 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Inspección / Prueba de Usabilidad.} Elimina la ambigüedad especificando el rango exacto de teclas de función (F1--F12) y la condición de estado (\textit{WHILE}). Verificable desconectando el ratón durante una prueba de flujo completo. \\
+REQ-04 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Prueba de Integración API.} Es completo e inambiguo: define disparador (\textit{WHEN}), cantidad exacta de sugerencias (3 ítems) y atributos obligatorios (amperaje, voltaje, precio, stock SQL). Evita alucinaciones filtrando contra PostgreSQL. \\
+REQ-05 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Prueba Unitaria y Transaccional SQL.} Especifica sin ambigüedad la regla fiscal vigente (IVA 15\%) y la atomicidad ACID en el descuento de kardex. Verificable mediante aserciones automatizadas en PyTest sobre Django. \\
+REQ-06 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Prueba de Caja Negra (Valores Límite).} Aplica el patrón EARS \textit{IF-THEN} para cubrir la condición borde ($\text{stock} \le 0$ o $< \text{cantidad solicitada}$). Garantiza consistencia contable evitando saldos negativos de inventario. \\
+REQ-07 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Prueba de Conformidad XSD / SRI.} Totalmente verificable contra el validador oficial XSD v2.1.0 del ambiente de pruebas del SRI Ecuador y verificación criptográfica de firma electrónica estándar PKCS\#12. \\
+REQ-08 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Prueba de Carga (Apache JMeter / Locust).} Cuantifica la propiedad temporal de ISO 25010 ($\le 3.0\text{ s}$ en el percentil 95 bajo 10 cajas concurrentes). Es factible gracias al motor de inferencia LPU de alta velocidad de Groq Cloud. \\
+REQ-09 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Benchmark de Base de Datos.} Define umbral numérico estricto ($\le 250\text{ ms}$), volumen de datos (50,000 SKUs) y tasa transaccional (500 tx/hora). Factible mediante índices B-Tree y GIN en PostgreSQL 16. \\
+REQ-10 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Prueba de Inyección de Fallos (Chaos Testing).} Especifica el SLA de disponibilidad ($\ge 99.5\%$) y el tiempo exacto de conmutación (\textit{failover} $\le 200\text{ ms}$) hacia el motor SQL local cuando se simula la caída de la API Groq. \\
+REQ-11 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Auditoría de Seguridad / Pentesting.} Inambiguo al nombrar los estándares criptográficos exactos (JWT con TTL 8h, \texttt{bcrypt} costo $\ge 12$, logs UTC inmutables). Trazable directamente al requerimiento de auditoría de SH-05. \\
+REQ-12 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Test con Usuarios y Analizador WCAG.} Sustituye el término ambiguo ``fácil de usar'' por métricas objetivas: contraste WCAG 2.1 AA, tiempo de inducción $< 15\text{ min}$ y tasa de error $< 1\%$. \\
+REQ-13 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Prueba de Hardware en Sitio.} Delimita las simbologías ópticas (EAN-13/Code-128), cadencia ($\ge 30\text{ lecturas/min}$), ancho de papel (80 mm), protocolo (ESC/POS) y latencia de impresión ($\le 1.5\text{ s}$). \\
+REQ-14 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Inspección de Tráfico de Red (Wireshark/Postman).} Especifica URI exacta del endpoint, versión de protocolo criptográfico (TLS 1.3 / TLS 1.2+) y formato de serialización (JSON / SOAP XML). \\
+REQ-15 & Sí & Sí & Sí & Sí & Sí & Sí & \textbf{Método: Inspección de Arquitectura y Auditoría Legal.} Verifica el stack exacto en el archivo \texttt{docker-compose.yml} (Python 3.12, Django, PostgreSQL 16) y el cumplimiento normativo con el SRI y la LOPDP vigente en Ecuador. \\
+\bottomrule
+\multicolumn{8}{l}{\footnotesize \textit{Leyenda de Propiedades IEEE 29148:} \textbf{Nec.}: Necesario; \textbf{Inamb.}: Sin ambigüedad; \textbf{Comp.}: Completo; \textbf{Sing.}: Singular; \textbf{Fact.}: Factible; \textbf{Verif.}: Verificable.}
+\end{tabularx}
+\end{table}
