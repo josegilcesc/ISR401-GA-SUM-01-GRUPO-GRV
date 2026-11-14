@@ -1,0 +1,93 @@
+% APORTE SEGUNDO AVANCE - ROBINSON ESPINOZA JEANPIERRE (CI: 1722574223)
+% Incluye: Secciones 2.5 (Tipos de Sistemas y Contexto) y 2.6 (Proceso y Framework de IR)
+%          + Criterio C3 (Actores del Proceso y Framework) y Criterio C4 (Aplicación del Proceso con Artefactos)
+
+\section{Sección 2: Desarrollo del Fundamento Teórico de Ingeniería de Requisitos (Paso 3)}
+
+\subsection{2.5 Tipos de Sistemas y Contexto del Sistema (Desarrollado por Jeanpierre Robinson)}
+
+\subsubsection{Concepto 1: Taxonomía de Sistemas Intensivos en Software e Híbridos con IA}
+\textbf{Definición Formal:} Según Pohl (2025) \cite{pohl2025}, SWEBOK v4.0 \cite{swebok2024} e ISO/IEC/IEEE 15288:2023 \cite{ieee15288}, los sistemas intensivos en software se clasifican según su dominio y comportamiento arquitectónico en: (a) \textbf{Sistemas de Información Empresariales}, centrados en la persistencia, integridad transaccional y procesamiento de datos de negocio; (b) \textbf{Sistemas Embebidos y Ciberfísicos}, estrechamente acoplados a sensores y actuadores de hardware con restricciones de tiempo real duro; y (c) \textbf{Sistemas Adaptativos o Basados en Inteligencia Artificial}, cuyo comportamiento depende de modelos de inferencia probabilística o aprendizaje automático que operan sobre contextos dinámicos \cite{pohl2025, swebok2024}.
+
+\textbf{Explicación Propia:} Reconocer el tipo de sistema al que pertenece un proyecto determina qué técnicas de ingeniería de requisitos deben priorizarse. Mientras un sistema de información tradicional requiere modelado exhaustivo de entidades de datos y reglas contables deterministas, un sistema que incorpora componentes de Inteligencia Artificial introduce incertidumbre controlada, latencias de red externa y el riesgo de ``alucinaciones'' en las respuestas. Por consiguiente, cuando un sistema es híbrido (transaccional + IA), la especificación de requisitos debe establecer barreras de contención (\textit{guardrails}) para que la capa probabilística de la IA jamás corrompa la exactitud financiera ni sugiera productos inexistentes en la base de datos.
+
+\textbf{Ejemplo Vinculado al PFC:} Nuestro PFC combina un núcleo transaccional determinista (facturación e inventario en PostgreSQL donde $1+1$ siempre debe ser exacto al centavo) con un módulo adaptativo de IA (Groq LLM). Para gobernar esta dualidad, diseñamos requisitos de restricción de contexto (\textit{Retrieval-Augmented Generation} / filtrado por catálogo SQL) de modo que el modelo de IA solo pueda recomendar códigos SKU que tengan stock mayor a cero en el almacén eléctrico de Quevedo.
+
+\subsubsection{Concepto 2: Límite del Sistema, Zona Gris y las Ocho Perspectivas de Contexto de Pohl}
+\textbf{Definición Formal:} Pohl (2025) \cite{pohl2025} e IREB CPRE v3.1 \cite{ireb2023} definen el \textbf{contexto del sistema} como la parte del entorno real que influye directamente en el sistema a desarrollar o que es afectada por él. El \textbf{límite del sistema} (\textit{system boundary}) separa el sistema bajo desarrollo de su contexto externo, existiendo una \textbf{zona gris} que se refina conforme avanza la elicitación \cite{pohl2025}. Para analizar sistemáticamente dicho entorno sin omitir restricciones, Pohl establece \textbf{ocho perspectivas de contexto}: (1) Perspectiva de Sujeto/Datos, (2) Perspectiva de Uso, (3) Perspectiva de Entorno TI, (4) Perspectiva de Desarrollo, (5) Perspectiva Física, (6) Perspectiva Social/Cultural, (7) Perspectiva Legal/Regulatoria y (8) Perspectiva Económica/Organizacional \cite{pohl2025}.
+
+\textbf{Explicación Propia:} Muchos proyectos fracasan no por errores internos de programación, sino por ignorar las fuerzas del entorno donde el software será desplegado. Trazar con precisión el límite del sistema permite pactar con el cliente qué procesos quedan automatizados dentro de la plataforma y qué sistemas externos (bancos, entidades gubernamentales, hardware) solo se comunican mediante interfaces. Asimismo, recorrer las ocho perspectivas de Pohl actúa como un radar metodológico completo que destapa requisitos ocultos, desde las condiciones de iluminación y ruido del mostrador físico hasta las leyes tributarias y la resistencia cultural de los empleados.
+
+\textbf{Ejemplo Vinculado al PFC:} Al delimitar la zona gris del PFC, determinamos que la contabilidad general tributaria queda fuera del límite del sistema (solo se exportan reportes y XML al SRI), mientras que el cálculo de comisiones y sugerencias técnicas de venta sí quedan dentro del límite. Asimismo, al aplicar la \textit{Perspectiva Física} de Pohl, identificamos que los mostradores de ferreterías eléctricas tienen polvo y espacio reducido, originando el requisito de usar navegación completa por teclado (teclas de función F1--F12) y escáner de código de barras sin depender del uso constante del ratón.
+
+\subsection{2.6 Proceso y Framework de Ingeniería de Requisitos (Desarrollado por Jeanpierre Robinson)}
+
+\subsubsection{Concepto 1: Actividades Core del Proceso de Requisitos (Elicitación, Análisis, Especificación y Validación)}
+\textbf{Definición Formal:} Tantísimo en el framework de Pohl (2025) \cite{pohl2025} como en el SWEBOK v4.0 \cite{swebok2024} e ISO/IEC/IEEE 29148:2018 \cite{ieee29148}, el proceso de ingeniería de requisitos se estructura en cuatro actividades fundamentales (\textit{core activities}) interdependientes e iterativas:
+\begin{enumerate}
+    \item \textbf{Elicitación (Descubrimiento):} Identificación de fuentes y extracción de necesidades de los stakeholders mediante entrevistas, observación en sitio, talleres o análisis documental \cite{pohl2025, wiegers2013}.
+    \item \textbf{Análisis y Negociación:} Exploración de factibilidad, detección de conflictos entre interesados, análisis de riesgos y consenso de prioridades \cite{swebok2024, ireb2023}.
+    \item \textbf{Especificación y Documentación:} Registro estructurado de los requisitos acordados en artefactos formales (SRS, modelos conceptuales, tablas EARS) siguiendo normas estandarizadas \cite{ieee29148, mavin2009ears}.
+    \item \textbf{Validación y Verificación:} Comprobación de que los requisitos documentados reflejan exactamente lo que el cliente necesita (validación) y cumplen con las propiedades de calidad normativa (verificación) \cite{ieee29148, pohl2025}.
+\end{enumerate}
+
+\textbf{Explicación Propia:} Estas cuatro actividades no conforman una cascada rígida de un solo paso, sino un ciclo continuo de refinamiento evolutivo. Durante la elicitación es común obtener deseos incompletos o contradictorios entre el dueño del negocio y los operarios; la fase de análisis filtra y negocia esas tensiones antes de plasmarlas formalmente en la especificación. Finalmente, la validación cierra el bucle asegurando mediante revisiones técnicas, prototipos o matrices de calidad que no se haya introducido ninguna distorsión entre el problema real del negocio y el documento técnico que recibirán los programadores.
+
+\textbf{Ejemplo Vinculado al PFC:} En el PFC ejecutamos el ciclo completo: (1) en \textit{Elicitación}, realizamos observación directa en un almacén eléctrico de Quevedo y entrevistas al cajero y propietario; (2) en \textit{Análisis}, negociamos el alcance descartando el entrenamiento de un modelo IA propio (muy costoso) a favor de consumir la API de Groq con contexto local; (3) en \textit{Especificación}, redactamos los 15 requisitos bajo sintaxis EARS e ISO 25010; y (4) en \textit{Validación}, auditamos cada requisito contra la matriz de propiedades de IEEE 29148 y prototipos de interfaz de caja.
+
+\subsubsection{Concepto 2: Actividades Transversales (Gestión de Requisitos y Trazabilidad) y Actores del Proceso}
+\textbf{Definición Formal:} De acuerdo con IREB CPRE v3.1 \cite{ireb2023}, Pohl \cite{pohl2025} y PMBOK 7.ª ed. \cite{pmbok}, la \textbf{Gestión de Requisitos} es una actividad transversal continua que abarca el control de versiones, la administración de líneas base (\textit{baselines}), el control de cambios (\textit{Change Control Board}) y el mantenimiento de la matriz de trazabilidad a lo largo del ciclo de vida. En este ecosistema interactúan actores con roles diferenciados: el \textbf{Ingeniero de Requisitos / Analista de Negocio}, el \textbf{Cliente / Patrocinador}, el \textbf{Usuario Operativo}, el \textbf{Arquitecto / Desarrollador de Software}, el \textbf{Ingeniero de Pruebas (QA)} y los \textbf{Entes Reguladores} \cite{ieee29148, wiegers2013}.
+
+\textbf{Explicación Propia:} Los requisitos son entidades vivas que cambian conforme evoluciona el mercado, la tecnología o la legislación; sin una gestión transversal disciplinada, cualquier proyecto cae rápidamente en la corrupción del alcance (\textit{scope creep}) y el caos documental. Del mismo modo, definir con exactitud las responsabilidades de cada actor humano en el proceso evita vacíos de autoridad: el cliente aprueba el presupuesto y las prioridades de negocio, el usuario valida la usabilidad operativa, el ingeniero de requisitos custodia la coherencia de la SRS y el desarrollador evalúa la viabilidad técnica y estima el esfuerzo constructivo.
+
+\textbf{Ejemplo Vinculado al PFC:} En el desarrollo de nuestra plataforma utilizamos Git y GitHub como repositorio de gestión de configuración para versionar los artefactos LaTeX (\texttt{.tex}) y la línea base de requisitos. Además, establecimos que cualquier cambio solicitado por el Propietario (ej. agregar cobros mediante código QR de Deuna) debe ser evaluado por el Analista Líder (José Gilces) mediante la matriz de trazabilidad antes de asignarse al equipo de desarrollo backend/frontend.
+
+
+\section{Sección 3: Artefactos del Procedimiento y Aplicación al PFC (Pasos 4 y 5)}
+
+\subsection{Criterio C3: Actores del Proceso y Framework de Ingeniería de Requisitos}
+El Criterio C3 de la rúbrica exige identificar los actores del proceso con roles concretos y mapear las actividades \textit{core} y transversales al sistema del PFC. La Tabla \ref{tab:actores_proceso} traduce los roles genéricos de la literatura \cite{pohl2025, ieee29148, ireb2023} a responsabilidades verificables dentro de la Plataforma POS con Asistencia Técnica IA.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Actores del Proceso de Ingeniería de Requisitos y su Rol Concreto en el PFC \cite{pohl2025, ieee29148, ireb2023}}
+\label{tab:actores_proceso}
+\begin{tabularx}{\textwidth}{l Y Y Y}
+\toprule
+\textbf{Actor del proceso} & \textbf{Rol concreto en el PFC} & \textbf{Responsabilidad en el proceso} & \textbf{Artefacto que produce o valida} \\
+\midrule
+Ingeniero de Requisitos / Analista Líder & Conduce la elicitación, negocia el alcance y custodia la coherencia de la especificación & Elicitación, análisis, control de cambios y trazabilidad & SRS, catálogo REQ-01--REQ-15 y matriz de trazabilidad \\
+Cliente / Patrocinador (Propietario del almacén) & Define los objetivos de negocio, financia el proyecto y aprueba prioridades & Validación de requisitos de negocio y aprobación de la priorización MoSCoW & Declaración de visión y requisitos de negocio (BR) \\
+Usuario operativo (Cajero y Administrador) & Ejecuta los flujos reales de mostrador e inventario & Elicitación mediante entrevista y validación de aceptación & Requisitos de stakeholder (StR) y de usuario (UR) \\
+Arquitecto / Desarrollador de software & Evalúa la factibilidad técnica y estima el esfuerzo de construcción & Análisis de factibilidad y especificación de la solución & Requisitos de solución (SRS) y restricciones de diseño \\
+Ingeniero de Pruebas (QA) & Deriva los casos de prueba a partir de requisitos verificables & Verificación y validación & Matriz de verificación IEEE 29148 \\
+Ente regulador (SRI y LOPDP) & Impone las obligaciones fiscales y de protección de datos & Restricciones de conformidad legal & Requisitos de conformidad regulatoria \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Las \textbf{actividades core} (elicitación, análisis, especificación y validación) se distribuyen entre estos actores de forma iterativa, mientras que las \textbf{actividades transversales} de gestión de requisitos, trazabilidad y control de cambios operan sobre todas las anteriores \cite{ireb2023, pmbok}. En el PFC esta separación evita vacíos de autoridad: por ejemplo, el Propietario no puede incorporar por sí solo una funcionalidad nueva, ya que todo cambio se canaliza por el Analista Líder y se audita contra la línea base de requisitos.
+
+\subsection{Criterio C4: Aplicación del Proceso de Requisitos con Artefactos Parciales}
+El Criterio C4 (25\,\% de la rúbrica) exige evidenciar la secuencia real del proceso y no solo su descripción teórica. La Tabla \ref{tab:aplicacion_proceso} documenta, para cada actividad del framework de Pohl \cite{pohl2025}, la técnica aplicada en el PFC, la decisión derivada y el artefacto parcial que la respalda.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Aplicación del Proceso de Requisitos al PFC con Artefactos Parciales por Actividad \cite{pohl2025, ieee29148, swebok2024}}
+\label{tab:aplicacion_proceso}
+\begin{tabularx}{\textwidth}{l Y Y Y}
+\toprule
+\textbf{Actividad} & \textbf{Técnica aplicada en el PFC} & \textbf{Resultado o decisión obtenida} & \textbf{Artefacto parcial} \\
+\midrule
+Elicitación & Observación en sitio en un almacén eléctrico de Quevedo, entrevista semiestructurada a cajero y propietario, y análisis del catálogo físico & Se identificó que el cajero podía tardar hasta cinco minutos consultando catálogos impresos y desconociendo equivalencias técnicas & Registro de elicitación con necesidades priorizadas por stakeholder \\
+Análisis y negociación & Matriz de conflictos, análisis de factibilidad y priorización MoSCoW & Se resolvió el conflicto entre seguridad y latencia mediante tokens JWT por turno de caja; se descartó entrenar un modelo propio por costo & Matriz de conflictos y decisiones de alcance \\
+Especificación & Plantilla ISO/IEC/IEEE 29148, sintaxis EARS e ISO/IEC 25010 para atributos de calidad & Quince requisitos únicos (REQ-01 a REQ-15) con identificador, tipo, prioridad MoSCoW y fuente trazable & Catálogo de requisitos del Criterio C1 \\
+Validación y verificación & Revisión por pares, matriz de propiedades de IEEE 29148 y prototipo de la interfaz de caja & Los quince requisitos satisfacen las nueve propiedades del requisito individual y las cinco del conjunto & Matriz de calidad por requisito del Criterio C2 \\
+Gestión y trazabilidad (transversal) & Repositorio Git/GitHub con líneas base por entregable y control de cambios formal & Todo cambio solicitado por el Propietario se evalúa antes de asignarse al equipo de desarrollo & Historial de versiones y matriz de trazabilidad \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+El resultado es un proceso trazable de extremo a extremo: cada requisito del catálogo puede rastrearse hacia atrás hasta la necesidad elicitada y hacia adelante hasta su criterio de verificación \cite{ieee29148, swebok2024}. Esta evidencia demuestra que el equipo aplicó el proceso sobre un sistema real y no se limitó a describir la teoría.
