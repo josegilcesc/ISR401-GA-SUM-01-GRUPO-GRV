@@ -1,0 +1,68 @@
+% APORTE SEGUNDO AVANCE - VELEZ VINCES JOSTIN GUSTAVO (CI: 1316917838)
+% Incluye: Ampliación Secciones 2.1 y 2.2 (Conceptos 1 y 2) + Paso 5a (Límite y 5 Entidades Externas) y Paso 5b (Declaración de Visión de Moore)
+
+\section{Sección 2: Desarrollo del Fundamento Teórico de Ingeniería de Requisitos (Paso 3)}
+
+\subsection{2.1 Fundamentos de la Ingeniería de Requisitos (Desarrollado por Jostin G. Vélez)}
+
+\subsubsection{Concepto 1: Ingeniería de Requisitos como Disciplina Mediadora}
+\textbf{Definición Formal:} La ingeniería de requisitos (IR) es una función interdisciplinaria que media entre los dominios del adquirente y el proveedor para establecer y mantener los requisitos que debe cumplir el sistema, software o servicio de interés \cite{ieee29148}. Se ocupa de descubrir, elicitar, desarrollar, analizar, verificar, validar, comunicar, documentar y gestionar dichos requisitos a lo largo de todo el ciclo de vida del sistema \cite{ieee29148, ieee15288}. Asimismo, un requisito se define formalmente como una propiedad que debe exhibirse para resolver un problema del mundo real o alcanzar un objetivo específico de un stakeholder \cite{pohl2025, swebok2024}.
+
+\textbf{Explicación Propia:} La ingeniería de requisitos no consiste simplemente en actuar como un transcriptor pasivo de lo que el cliente solicita inicialmente, sino que constituye un proceso analítico, sistemático y de ingeniería profundo. Implica investigar la raíz del problema organizacional subyacente y transformar intenciones humanas vagas, incompletas y frecuentemente contradictorias en especificaciones técnicas precisas, medibles y computacionalmente viables. Cuando esta disciplina se ejecuta de manera superficial, los defectos analíticos se propagan por efecto cascada hacia el diseño arquitectónico y la codificación, multiplicando exponencialmente los costos de remediación y elevando el riesgo de rechazo del producto final.
+
+\textbf{Ejemplo Vinculado al PFC:} En la Plataforma de Ventas para locales eléctricos de Quevedo, el síntoma inicial expresado por el dueño era ``la facturación es demasiado lenta y perdemos clientes''. Aplicar la ingeniería de requisitos permitió trascender la simple optimización de pantallas y descubrir la causa raíz: los cajeros demoraban hasta 5 minutos consultando catálogos físicos por desconocimiento electrotécnico. Esta necesidad se transformó en el requisito formal de integrar un motor de inferencia vía API Groq que entregue tres sugerencias de productos técnicamente compatibles en un tiempo menor o igual a 3.0 segundos.
+
+\subsubsection{Concepto 2: Articulación con el Ciclo de Vida de Sistemas y Software (ISO 15288 / ISO 12207)}
+\textbf{Definición Formal:} Según los estándares ISO/IEC/IEEE 15288:2023 \cite{ieee15288} e ISO/IEC/IEEE 12207:2017 \cite{ieee12207}, los procesos técnicos de definición de necesidades de stakeholders y análisis de requisitos operan de forma recursiva e iterativa a través de los niveles de negocio (BRS), stakeholder (StRS), sistema (SyRS) y software (SRS) \cite{ieee29148}. Cada nivel de abstracción transforma necesidades operativas del entorno en requisitos técnicos verificables que alimentan la arquitectura y la integración \cite{ieee12207, hull2011}.
+
+\textbf{Explicación Propia:} Los requisitos no nacen aislados en el código fuente; responden a una jerarquía de valor organizacional estricta. Una regla estratégica de negocio origina expectativas en los usuarios operativos, las cuales a su vez imponen capacidades al sistema sociotécnico global y, finalmente, se materializan en módulos de software específicos. Mantener esta alineación vertical garantiza que cada línea de código programada aporte valor directo al objetivo empresarial y que ningún componente tecnológico sea construido sin justificación funcional o económica.
+
+\textbf{Ejemplo Vinculado al PFC:} En el PFC, el objetivo de negocio de ``incrementar las ventas cruzadas de material eléctrico en un 20\% trimestral'' (nivel BRS) se descompone en la necesidad del cajero de ``visualizar accesorios complementarios al facturar un componente principal'' (nivel StRS), lo que deriva en el requisito de software (nivel SRS) donde el backend en Django consulta asíncronamente al modelo LLM en Groq al agregar un interruptor termomagnético al carrito para sugerir rieles DIN y terminales de cobre compatibles.
+
+\subsection{2.2 Categorías y Niveles de Requisitos (Desarrollado por Jostin G. Vélez)}
+
+\subsubsection{Concepto 1: Requisitos Funcionales vs. Requisitos No Funcionales}
+\textbf{Definición Formal:} De acuerdo con el SWEBOK v4.0 \cite{swebok2024} y Glinz \cite{glinz2007nfr}, los requisitos de software se categorizan fundamentalmente en funcionales y no funcionales. Los requisitos funcionales (RF) especifican los comportamientos observables, transformaciones de datos, políticas comerciales y reacciones que el software debe ejecutar ante estímulos de entrada \cite{pohl2025, swebok2024}. Por su parte, los requisitos no funcionales (RNF) actúan como atributos de calidad o restricciones que acotan la solución arquitectónica o estipulan niveles cuantificables de desempeño, seguridad, fiabilidad y usabilidad \cite{iso25010, glinz2007nfr}.
+
+\textbf{Explicación Propia:} Separar rigurosamente los requisitos funcionales de los no funcionales es indispensable para controlar la complejidad del diseño arquitectónico. Mientras los requisitos funcionales responden al ``qué'' debe hacer el sistema para satisfacer las tareas del usuario, los requisitos no funcionales determinan el ``cómo'' y ``qué tan bien'' debe ejecutarse dicho comportamiento bajo condiciones operativas reales. Aplicar la heurística de la ``tecnología perfecta'' permite distinguir que todo requisito que seguiría siendo necesario incluso con memoria y velocidad infinitas es estrictamente funcional, mientras que las exigencias de tiempos de respuesta, concurrencia o tolerancia a fallos pertenecen al dominio no funcional.
+
+\textbf{Ejemplo Vinculado al PFC:} Un requisito funcional puro en el PFC establece que el sistema calcule el subtotal, el desglose del IVA vigente (15\%) y el total a pagar cuando el cajero registre ítems eléctricos en el comprobante. En contraste, el requisito no funcional asociado exige que el motor de base de datos PostgreSQL procese y confirme la transacción completa de facturación e inventario en menos de 500 milisegundos bajo una carga concurrente de 10 cajas activas simultáneamente.
+
+\subsubsection{Concepto 2: Requisitos de Negocio, de Stakeholder y de Solución}
+\textbf{Definición Formal:} La norma ISO/IEC/IEEE 29148:2018 \cite{ieee29148} y Wiegers \& Beatty \cite{wiegers2013} estructuran los requisitos en tres estratos: (i) Requisitos de Negocio, que declaran el propósito de alto nivel de la organización; (ii) Requisitos de Stakeholder o Usuario, que describen las metas y tareas que los actores deben poder realizar con el sistema; y (iii) Requisitos de Solución (Sistema y Software), que detallan las capacidades detalladas e interfaces para la construcción técnica \cite{ieee29148, ireb2023}.
+
+\textbf{Explicación Propia:} Confundir las metas de un usuario con las reglas de negocio o con detalles de implementación técnica es una de las principales causas de ambigüedad en los proyectos de ingeniería de software. Estructurar los requisitos en estos tres estratos permite hablar con el propietario del local en términos financieros, con el cajero en términos de flujos de trabajo ergonómicos, y con el equipo de desarrolladores en términos de endpoints REST, esquemas SQL y algoritmos. Así se asegura una trazabilidad limpia desde la visión corporativa hasta las pruebas de aceptación.
+
+\textbf{Ejemplo Vinculado al PFC:} En nuestra plataforma, el requisito de negocio exige ``eliminar las multas tributarias por emisiones extemporáneas''; el requisito de stakeholder del administrador establece ``poder auditar el estado de autorización de todos los comprobantes electrónicos del día en un solo panel''; y el requisito de solución de software especifica ``implementar un demonio (\textit{worker}) de sincronización que firme digitalmente el archivo XML con certificado PKCS\#12 y consuma el servicio web de recepción y autorización del SRI''.
+
+
+\subsection{Paso 5 (Avance Preliminar): Límite del Sistema y Declaración de Visión}
+
+\subsubsection{a) Definición del Límite del Sistema y Entidades Externas (Mín. 5 Interfaces)}
+Siguiendo la metodología de Pohl (2025) \cite{pohl2025} e ISO/IEC/IEEE 29148:2018 \cite{ieee29148}, el límite de la Plataforma POS Inteligente abarca internamente los módulos de gestión de inventario eléctrico, facturación local, orquestador de prompts con contexto de catálogo (RAG sobre PostgreSQL) y panel de auditoría. Quedan fuera del límite del sistema —interactuando exclusivamente mediante interfaces bien definidas— las cinco entidades externas detalladas en la Tabla \ref{tab:entidades_externas}:
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Especificación de Entidades Externas e Interfaces en el Límite del Sistema del PFC \cite{ieee29148, pohl2025}}
+\label{tab:entidades_externas}
+\begin{tabularx}{\textwidth}{l l Y l l}
+\toprule
+\textbf{ID} & \textbf{Entidad Externa} & \textbf{Tipo y Estructura de Datos Intercambiados} & \textbf{Protocolo / Estándar} & \textbf{Frecuencia Operativa} \\
+\midrule
+EXT-01 & Servicio de Inferencia IA Groq Cloud & \textbf{Entrada/Salida:} Payload JSON con prompt técnico del producto eléctrico, restricciones de stock SQL y vector de 3 sugerencias con justificación electrotécnica. & HTTPS REST API sobre TLS 1.3 (JSON UTF-8) & Bajo demanda en mostrador ($\approx 80\text{--}150$ consultas/día). \\
+EXT-02 & Web Services del SRI Ecuador & \textbf{Entrada/Salida:} Comprobante electrónico estructurado en XML firmado (XAdES-BES) y mensaje de respuesta de Recepción/Autorización con clave de acceso de 49 dígitos. & SOAP 1.1 / HTTPS sobre TLS 1.2+ (XML XSD v2.1.0) & Tiempo real por cada venta facturada ($\approx 200\text{--}400$ tx/día). \\
+EXT-03 & Pasarela de Pagos / POS Bancario (Datafast / Deuna) & \textbf{Entrada/Salida:} Trama de solicitud de cobro (monto total, IVA, lote, referencia) y token de confirmación o rechazo de transacción financiera. & API REST JSON / Trama TCP-IP ISO 8583 cifrada & Por cada cobro electrónico o QR ($\approx 60\text{--}120$ tx/día). \\
+EXT-04 & Lector Óptico de Código de Barras 1D/2D & \textbf{Entrada hacia el Sistema:} Flujo de caracteres alfanuméricos correspondientes a simbologías EAN-13, EAN-8 y Code-128 de materiales eléctricos con sufijo \texttt{CR/LF}. & USB HID (\textit{Human Interface Device} / Emulación Teclado) & Continua de alta frecuencia ($\ge 30$ lecturas/min en hora pico). \\
+EXT-05 & Impresora Térmica de Mostrador (80 mm) & \textbf{Salida desde el Sistema:} Secuencia binaria de comandos de formato, texto de factura simplificada RIDE, desglose de impuestos y comando de corte automático de guillotina. & Comandos ESC/POS sobre puerto USB 2.0 o Ethernet RAW (Puerto 9100) & Inmediata al cierre de cada venta ($\approx 200\text{--}400$ impresiones/día). \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{b) Declaración de Visión del Producto en Formato de Geoffrey Moore}
+Aplicando la plantilla canónica de posicionamiento estratégico de Geoffrey A. Moore \cite{moore2014}, adoptada en la ingeniería de requisitos por Wiegers \& Beatty \cite{wiegers2013}, se formula la declaración de visión oficial del Proyecto Fin de Curso:
+
+\begin{quote}
+\textbf{Declaración de Visión (Formato Moore \cite{moore2014}):} \\
+\textit{``\textbf{Para} los cajeros, administradores y propietarios de almacenes comercializadores de suministros eléctricos en Quevedo \textbf{que} enfrentan cuellos de botella en la facturación en horas pico y pérdida de ventas por falta de conocimientos electrotécnicos para recomendar componentes compatibles o sustitutos, \textbf{la} Plataforma POS Web con Asistente Técnico IA (Groq) \textbf{es un} sistema de información transaccional e inteligente de punto de venta \textbf{que} agiliza el cobro por teclado/escáner, automatiza la facturación electrónica SRI y sugiere en menos de 3 segundos tres productos eléctricos técnicamente equivalentes con stock real verificado en base de datos. \textbf{A diferencia de} los sistemas de facturación contable tradicionales o la consulta manual de catálogos impresos, \textbf{nuestro producto} combina un motor relacional ACID en PostgreSQL con inferencia LLM ultrarrápida vía API Groq acoplada al inventario local, garantizando asesoría técnica precisa en mostrador sin riesgo de recomendar ítems agotados.''}
+\end{quote}
