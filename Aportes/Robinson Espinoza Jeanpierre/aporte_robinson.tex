@@ -1,93 +1,159 @@
-% APORTE SEGUNDO AVANCE - ROBINSON ESPINOZA JEANPIERRE (CI: 1722574223)
-% Incluye: Secciones 2.5 (Tipos de Sistemas y Contexto) y 2.6 (Proceso y Framework de IR)
-%          + Criterio C3 (Actores del Proceso y Framework) y Criterio C4 (Aplicación del Proceso con Artefactos)
+% APORTE TERCER AVANCE (CIERRE) - ROBINSON ESPINOZA JEANPIERRE (CI: 1722574223)
+% Incluye: Criterio C3 (Mapeo de Actores y Framework IR), Criterio C4 (4 Artefactos del Proceso: Elicitación, Análisis, Especificación, Validación), Conclusiones 4 y 5, Portada UTEQ, Índice y Anexos A y B
 
-\section{Sección 2: Desarrollo del Fundamento Teórico de Ingeniería de Requisitos (Paso 3)}
+\subsection{Criterio C3: Actores y Framework de Ingeniería de Requisitos Mapeados al PFC}
+Para cubrir íntegramente el Criterio C3 de la Rúbrica SGA (\textit{15\% de la nota: Actores del proceso identificados con roles concretos; actividades core y transversales mapeadas al sistema} \cite{ieee29148, pohl2025, ireb2023}), en la Tabla \ref{tab:actores_framework} se relaciona cada actor humano y técnico del proyecto con sus responsabilidades específicas dentro del framework de IR y los artefactos concretos generados para el PFC.
 
-\subsection{2.5 Tipos de Sistemas y Contexto del Sistema (Desarrollado por Jeanpierre Robinson)}
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Mapeo de Actores del Proceso y Actividades Core/Transversales del Framework de IR Aplicado al PFC \cite{ieee29148, pohl2025}}
+\label{tab:actores_framework}
+\begin{tabularx}{\textwidth}{l l Y Y}
+\toprule
+\textbf{Actor del Proceso de IR} & \textbf{Persona / Entidad en el PFC} & \textbf{Participación en Actividades Core (Elicitación, Análisis, Especificación, Validación)} & \textbf{Participación en Actividades Transversales (Gestión, Trazabilidad y Control de Cambios)} \\
+\midrule
+\textbf{Ingeniero de Requisitos / Analista Líder} & José Ignacio Gilces Carranza (\textit{Analista Líder}) & Diseña y conduce las entrevistas contextuales; aplica las 8 perspectivas de Pohl; redacta formalmente los requisitos en sintaxis EARS e ISO 25010; ejecuta la verificación de propiedades IEEE 29148. & Administra la línea base de requisitos (\textit{Baseline v1.0}) en GitHub, mantiene la matriz de trazabilidad bidireccional y evalúa el impacto técnico de las solicitudes de cambio. \\
+\midrule
+\textbf{Ingenieros de Requisitos / Investigadores} & Jostin Vélez Vinces y Jeanpierre Robinson Espinoza & Modelan el límite del sistema y sus 5 interfaces externas; construyen el mapa conceptual y prototipos de baja fidelidad; documentan los escenarios de excepción de la API Groq y del SRI. & Gestionan la biblioteca bibliográfica estandarizada en Zotero (estilo IEEE) y aseguran la consistencia terminológica del glosario técnico en LaTeX. \\
+\midrule
+\textbf{Cliente / Patrocinador (\textit{Sponsor})} & Propietario del Almacén Eléctrico (SH-03) & Define los objetivos estratégicos de negocio (reducción de atención a $\le 60\text{ s}$); negocia el presupuesto operativo para la API Groq; aprueba la Declaración de Visión en formato Moore. & Autoriza o rechaza cambios de alcance (\textit{Change Requests}) que impacten el costo o el cronograma de despliegue del MVP. \\
+\midrule
+\textbf{Usuarios Operativos y Tácticos} & Cajeros de Mostrador (SH-01) y Administrador (SH-02) & Aportan el conocimiento empírico del dominio durante la observación en sitio; detallan la jerga eléctrica local; participan en las sesiones de validación de usabilidad y atajos de teclado (F1--F12). & Reportan defectos de usabilidad o nuevos casos de productos eléctricos no cubiertos durante las pruebas piloto iterativas. \\
+\midrule
+\textbf{Arquitecto y Desarrolladores de Software} & Equipo de Desarrollo Full-Stack (Django / PostgreSQL / UI) & Analizan la factibilidad técnica (propiedad IEEE 29148) de los tiempos de respuesta exigidos ($\le 3.0\text{ s}$ en IA y $\le 250\text{ ms}$ en SQL); diseñan el mecanismo de \textit{fallback} local y el esquema \texttt{JSONB}. & Vinculan cada commit de código fuente y script de prueba automatizada (PyTest) con el identificador único del requisito (\texttt{REQ-01} a \texttt{REQ-15}). \\
+\midrule
+\textbf{Auditor / Ente Regulador} & Contador / Servicio de Rentas Internas (SH-05) & Provee las fichas técnicas normativas de comprobantes electrónicos (XML XSD v2.1.0) y las restricciones de auditoría tributaria y protección de datos (LOPDP). & Audita la trazabilidad regulatoria ante reformas fiscales o actualizaciones de porcentajes impositivos en el Ecuador. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-\subsubsection{Concepto 1: Taxonomía de Sistemas Intensivos en Software e Híbridos con IA}
-\textbf{Definición Formal:} Según Pohl (2025) \cite{pohl2025}, SWEBOK v4.0 \cite{swebok2024} e ISO/IEC/IEEE 15288:2023 \cite{ieee15288}, los sistemas intensivos en software se clasifican según su dominio y comportamiento arquitectónico en: (a) \textbf{Sistemas de Información Empresariales}, centrados en la persistencia, integridad transaccional y procesamiento de datos de negocio; (b) \textbf{Sistemas Embebidos y Ciberfísicos}, estrechamente acoplados a sensores y actuadores de hardware con restricciones de tiempo real duro; y (c) \textbf{Sistemas Adaptativos o Basados en Inteligencia Artificial}, cuyo comportamiento depende de modelos de inferencia probabilística o aprendizaje automático que operan sobre contextos dinámicos \cite{pohl2025, swebok2024}.
+\subsection{Criterio C4: Aplicación Práctica de la Secuencia del Proceso de Requisitos (Artefactos Parciales del PFC)}
+En cumplimiento del Criterio C4 de la Rúbrica SGA (\textit{25\% de la nota: Se muestra la secuencia de actividades del proceso —elicitación, análisis, especificación, validación— con artefactos parciales para el sistema seleccionado} \cite{ieee29148, pohl2025}), a continuación se documenta la trazabilidad secuencial completa de cómo una necesidad real del almacén eléctrico fue procesada a través de las cuatro fases del proceso de ingeniería de requisitos mediante artefactos verificables.
 
-\textbf{Explicación Propia:} Reconocer el tipo de sistema al que pertenece un proyecto determina qué técnicas de ingeniería de requisitos deben priorizarse. Mientras un sistema de información tradicional requiere modelado exhaustivo de entidades de datos y reglas contables deterministas, un sistema que incorpora componentes de Inteligencia Artificial introduce incertidumbre controlada, latencias de red externa y el riesgo de ``alucinaciones'' en las respuestas. Por consiguiente, cuando un sistema es híbrido (transaccional + IA), la especificación de requisitos debe establecer barreras de contención (\textit{guardrails}) para que la capa probabilística de la IA jamás corrompa la exactitud financiera ni sugiera productos inexistentes en la base de datos.
+\subsubsection{Fase 1: Artefacto Parcial de Elicitación (Ficha de Entrevista Contextual y Observación en Sitio)}
+Se aplicó la técnica combinada de \textbf{Entrevista Semiestructurada} y \textbf{Observación Directa (\textit{Shadowing})} en un local de materiales eléctricos de Quevedo \cite{pohl2025, wiegers2013}.
 
-\textbf{Ejemplo Vinculado al PFC:} Nuestro PFC combina un núcleo transaccional determinista (facturación e inventario en PostgreSQL donde $1+1$ siempre debe ser exacto al centavo) con un módulo adaptativo de IA (Groq LLM). Para gobernar esta dualidad, diseñamos requisitos de restricción de contexto (\textit{Retrieval-Augmented Generation} / filtrado por catálogo SQL) de modo que el modelo de IA solo pueda recomendar códigos SKU que tengan stock mayor a cero en el almacén eléctrico de Quevedo.
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Artefacto de Elicitación ELI-01: Registro de Entrevista y Observación en Mostrador}
+\label{tab:artefacto_elicitacion}
+\begin{tabularx}{\textwidth}{l Y}
+\toprule
+\textbf{Campo del Artefacto} & \textbf{Registro de Evidencia Empírica en el Contexto Local (Quevedo)} \\
+\midrule
+\textbf{Código y Fecha:} & \texttt{ACTA-ELI-01} $\cdot$ Fecha de levantamiento: 06 de noviembre de 2026 $\cdot$ Duración: 45 minutos. \\
+\textbf{Stakeholders Entrevistados:} & SH-01 (Cajero principal de mostrador) y SH-02 (Administrador de inventario). \\
+\textbf{Hallazgo de Observación (\textit{As-Is}):} & Se cronometraron 15 atenciones en hora pico (10h30--11h30). Cuando un cliente solicitó un ``contactor trifásico de 25A bobina 220V'' cuya marca habitual estaba agotada, el cajero tardó \textbf{4 minutos y 15 segundos} revisando cajas físicamente en percha y llamando al administrador, provocando que 2 clientes en fila abandonaran el local. \\
+\textbf{Declaración Textual del Usuario:} & \textit{``Yo sé cobrar rápido cuando me traen el código exacto, pero cuando me piden un reemplazo eléctrico o no hay stock de una marca, no sé qué otro modelo aguanta el mismo amperaje y pierdo mucho tiempo buscando''} (SH-01). \\
+\textbf{Necesidades Brutas Identificadas:} & (N1) Saber al instante qué producto en stock sirve como reemplazo técnico seguro; (N2) No depender del ratón al facturar; (N3) Que el sistema no se congele si el internet está inestable. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-\subsubsection{Concepto 2: Límite del Sistema, Zona Gris y las Ocho Perspectivas de Contexto de Pohl}
-\textbf{Definición Formal:} Pohl (2025) \cite{pohl2025} e IREB CPRE v3.1 \cite{ireb2023} definen el \textbf{contexto del sistema} como la parte del entorno real que influye directamente en el sistema a desarrollar o que es afectada por él. El \textbf{límite del sistema} (\textit{system boundary}) separa el sistema bajo desarrollo de su contexto externo, existiendo una \textbf{zona gris} que se refina conforme avanza la elicitación \cite{pohl2025}. Para analizar sistemáticamente dicho entorno sin omitir restricciones, Pohl establece \textbf{ocho perspectivas de contexto}: (1) Perspectiva de Sujeto/Datos, (2) Perspectiva de Uso, (3) Perspectiva de Entorno TI, (4) Perspectiva de Desarrollo, (5) Perspectiva Física, (6) Perspectiva Social/Cultural, (7) Perspectiva Legal/Regulatoria y (8) Perspectiva Económica/Organizacional \cite{pohl2025}.
+\subsubsection{Fase 2: Artefacto Parcial de Análisis y Negociación (Resolución de Conflictos y Matriz de Riesgos)}
+Las necesidades brutas elicitadas fueron sometidas a análisis de factibilidad técnica, detección de conflictos entre stakeholders y negociación de soluciones arquitectónicas \cite{swebok2024, ireb2023}:
 
-\textbf{Explicación Propia:} Muchos proyectos fracasan no por errores internos de programación, sino por ignorar las fuerzas del entorno donde el software será desplegado. Trazar con precisión el límite del sistema permite pactar con el cliente qué procesos quedan automatizados dentro de la plataforma y qué sistemas externos (bancos, entidades gubernamentales, hardware) solo se comunican mediante interfaces. Asimismo, recorrer las ocho perspectivas de Pohl actúa como un radar metodológico completo que destapa requisitos ocultos, desde las condiciones de iluminación y ruido del mostrador físico hasta las leyes tributarias y la resistencia cultural de los empleados.
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Artefacto de Análisis ANA-01: Matriz de Negociación de Conflictos y Mitigación Técnica}
+\label{tab:artefacto_analisis}
+\begin{tabularx}{\textwidth}{l Y Y Y}
+\toprule
+\textbf{ID Conflicto} & \textbf{Tensión Detectada entre Stakeholders} & \textbf{Análisis de Riesgo Técnico / Económico} & \textbf{Acuerdo de Negociación y Decisión de Ingeniería} \\
+\midrule
+\textbf{CONF-01} & \textbf{SH-01 (Cajero)} solicita un asistente IA libre tipo chat abierto vs. \textbf{SH-02 (Administrador)} exige que jamás se recomiende un producto sin stock o con datos eléctricos inventados (\textit{alucinación}). & Un LLM abierto sin restricción puede sugerir marcas que el local no vende o calibres de cable peligrosos, generando responsabilidad técnica y pérdida de tiempo. & \textbf{Solución Acordada:} Implementar arquitectura RAG ligera donde Django inyecta en el prompt de Groq únicamente los productos con \texttt{stock > 0} de la misma familia eléctrica extraídos de PostgreSQL (deriva en \texttt{REQ-04} y \texttt{REQ-06}). \\
+\midrule
+\textbf{CONF-02} & \textbf{SH-03 (Propietario)} exige costo cero en servidores dedicados GPU vs. \textbf{SH-01 (Cajero)} exige respuestas de IA en menos de 3 segundos. & Ejecutar un modelo LLM local (ej. Llama-3 8B) en la PC de caja sin GPU dedicada tarda $>18\text{ s}$ por respuesta, haciendo inviable la atención. & \textbf{Solución Acordada:} Consumir la API en la nube de \textbf{Groq} (inferencia LPU a $>300\text{ tokens/s}$) con caché diario en PostgreSQL/Redis, logrando latencias $<2.0\text{ s}$ a un costo marginal inferior a \$5 USD/mes (deriva en \texttt{REQ-08}). \\
+\midrule
+\textbf{CONF-03} & \textbf{Dependencia de nube (Groq/SRI)} vs. \textbf{Continuidad de negocio en Quevedo} ante microcortes de internet. & Si la API externa falla y bloquea el hilo principal de Django, la caja registradora quedaría inutilizada en plena venta. & \textbf{Solución Acordada:} Peticiones asíncronas con \textit{timeout} estricto de $3.0\text{ s}$, conmutación automática a consulta SQL determinista en $\le 200\text{ ms}$ y cola de contingencia offline para comprobantes SRI (deriva en \texttt{REQ-10}). \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-\textbf{Ejemplo Vinculado al PFC:} Al delimitar la zona gris del PFC, determinamos que la contabilidad general tributaria queda fuera del límite del sistema (solo se exportan reportes y XML al SRI), mientras que el cálculo de comisiones y sugerencias técnicas de venta sí quedan dentro del límite. Asimismo, al aplicar la \textit{Perspectiva Física} de Pohl, identificamos que los mostradores de ferreterías eléctricas tienen polvo y espacio reducido, originando el requisito de usar navegación completa por teclado (teclas de función F1--F12) y escáner de código de barras sin depender del uso constante del ratón.
+\subsubsection{Fase 3: Artefacto Parcial de Especificación Detallada (Ficha Técnica de Requisito Crítico SRS)}
+Como producto de la fase de especificación conforme a ISO/IEC/IEEE 29148:2018 \cite{ieee29148} y EARS \cite{mavin2009ears}, se documenta la ficha micro-estructurada del requisito crítico \texttt{REQ-04}:
 
-\subsection{2.6 Proceso y Framework de Ingeniería de Requisitos (Desarrollado por Jeanpierre Robinson)}
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Artefacto de Especificación ESP-01: Plantilla Detallada IEEE 29148 para el Requisito Crítico REQ-04}
+\label{tab:artefacto_especificacion}
+\begin{tabularx}{\textwidth}{l Y}
+\toprule
+\textbf{Atributo SRS (IEEE 29148)} & \textbf{Especificación Formal del Artefacto} \\
+\midrule
+\textbf{Identificador y Título:} & \texttt{REQ-04} --- Recomendación Técnica de Suministros Eléctricos Asistida por IA Groq con Filtro de Stock Local. \\
+\textbf{Tipo y Prioridad MoSCoW:} & Requisito Funcional de Software (RF) $\cdot$ Prioridad: \textbf{Must Have} (Crítico para el MVP). \\
+\textbf{Declaración EARS (\textit{Event-Driven}):} & \textbf{WHEN} el cajero ingresa un código SKU agotado o una consulta técnica en el asistente inteligente (tecla \texttt{F4}), \textit{the POS System shall} invocar el modelo LLM vía API Groq filtrando el catálogo activo de PostgreSQL y presentar exactamente 3 productos eléctricos compatibles indicando nombre, amperaje/voltaje, precio unitario y stock disponible. \\
+\textbf{Precondiciones:} & 1. Sesión de cajero autenticada mediante JWT activo (\texttt{REQ-11}). 2. Catálogo de productos sincronizado en PostgreSQL con atributo \texttt{especificaciones\_jsonb}. \\
+\textbf{Flujo de Entrada / Estímulo:} & Cadena de consulta técnica (ej. \textit{``Reemplazo para breaker riel DIN 2x32A curva C''}) o clic/atajo sobre ítem con \texttt{stock = 0}. \\
+\textbf{Procesamiento y Reglas:} & El backend Django ejecuta un \texttt{SELECT} pre-filtrado en PostgreSQL por categoría y \texttt{stock\_actual > 0} (máx. 15 candidatos), construye el prompt estructurado sin datos personales (LOPDP) y solicita a Groq un JSON con los 3 mejores sustitutos ordenados por equivalencia técnica. \\
+\textbf{Postcondiciones / Salida:} & Se renderiza en el modal de caja una tabla seleccionable con las 3 opciones en $\le 3.0\text{ s}$ (\texttt{REQ-08}); al presionar \texttt{Enter} sobre una opción, se agrega directamente al detalle de la factura (\texttt{REQ-05}). \\
+\textbf{Trazabilidad Bidireccional:} & \textbf{Origen:} \texttt{ACTA-ELI-01} (SH-01, SH-02) y \texttt{CONF-01}. $\rightarrow$ \textbf{Hacia adelante:} Módulo \texttt{services/groq\_recommender.py}, Tabla \texttt{productos\_electricos}, Caso de Prueba \texttt{TC-REQ-04}. \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-\subsubsection{Concepto 1: Actividades Core del Proceso de Requisitos (Elicitación, Análisis, Especificación y Validación)}
-\textbf{Definición Formal:} Tantísimo en el framework de Pohl (2025) \cite{pohl2025} como en el SWEBOK v4.0 \cite{swebok2024} e ISO/IEC/IEEE 29148:2018 \cite{ieee29148}, el proceso de ingeniería de requisitos se estructura en cuatro actividades fundamentales (\textit{core activities}) interdependientes e iterativas:
+\subsubsection{Fase 4: Artefacto Parcial de Validación y Verificación (Checklist de Inspección y Caso de Prueba de Aceptación)}
+Finalmente, en la fase de validación y verificación \cite{ieee29148, pohl2025}, el requisito especificado se somete a una prueba de aceptación formal (\textit{User Acceptance Test - UAT}) firmada con los stakeholders:
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\caption{Artefacto de Validación VAL-01: Protocolo de Prueba de Aceptación y Verificación para REQ-04 y REQ-08}
+\label{tab:artefacto_validacion}
+\begin{tabularx}{\textwidth}{l Y}
+\toprule
+\textbf{Parámetro de Validación} & \textbf{Descripción y Criterio de Aceptación Cuantitativo} \\
+\midrule
+\textbf{ID Caso de Prueba y Objetivo:} & \texttt{VAL-UAT-04} --- Validar la precisión electrotécnica, restricción de stock real y tiempo de respuesta del recomendador IA Groq en escenario real de mostrador. \\
+\textbf{Datos de Prueba (Input):} & Producto buscado: \textit{Contactor Chint NXC-25 25A 220V} (configurado deliberadamente con \texttt{stock\_actual = 0} en PostgreSQL). En la base existen 4 contactores alternativos de 25A (marcas Schneider, ABB y Weg con stock $> 5$) y 2 contactores de 9A (incompatibles por subdimensionamiento). \\
+\textbf{Resultado Esperado (Oráculo):} & 1. El sistema bloquea la venta del ítem agotado (\texttt{REQ-06}). \newline
+2. En $\le 3.0\text{ segundos}$ (\texttt{REQ-08}), el panel muestra las 3 alternativas de 25A/220V en stock (Schneider, ABB, Weg) y \textbf{descarta} los contactores de 9A explicando que no soportan la carga nominal de 25A. \\
+\textbf{Checklist de Revisión IEEE 29148:} & [$\checkmark$] ¿Es verificable cuantitativamente? Sí ($\le 3.0\text{ s}$, exactamente 3 ítems). \newline
+[$\checkmark$] ¿Está libre de ambigüedad sintáctica? Sí (patrón EARS \textit{WHEN... shall}). \newline
+[$\checkmark$] ¿Fue validado por el usuario operativo (SH-01) y administrador (SH-02)? \textbf{APROBADO}. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section*{Conclusiones Individuales --- Jeanpierre Robinson Espinoza}
+\begin{itemize}
+\item \textbf{Conclusión 4 --- Robinson Espinoza Jeanpierre (Sobre el Proceso Iterativo de IR y la Gestión de Conflictos entre Stakeholders):} \\
+    \textbf{(1) Afirmación:} La ingeniería de requisitos efectiva no es una fase documental aislada, sino un ciclo continuo de elicitación, análisis, negociación, especificación y validación donde se concilian intereses contrapuestos de múltiples actores. \textbf{(2) Evidencia con cita:} Tal como sostienen el SWEBOK v4.0 \cite{swebok2024}, el PMBOK 7.ª edición \cite{pmbok} y Wiegers \& Beatty \cite{wiegers2013}, clasificar a los interesados en una matriz de poder/interés y negociar las tensiones técnicas temprano reduce drásticamente el retrabajo y la corrupción del alcance (\textit{scope creep}). \textbf{(3) Implicación para el PFC y la profesión:} En el PFC, el proceso de análisis nos permitió resolver el conflicto entre el propietario (que exigía bajo presupuesto de hardware) y el cajero (que requería inferencia IA instantánea), adoptando la API en la nube de Groq con pre-filtrado SQL local en lugar de costosos servidores GPU locales, logrando una arquitectura financieramente viable y técnicamente sobresaliente.
+
+    \item \textbf{Conclusión 5 --- Robinson Espinoza Jeanpierre (Sobre la Trazabilidad Bidireccional y el Rigor Documental Académico):} \\
+    \textbf{(1) Afirmación:} Mantener la trazabilidad bidireccional desde las fuentes primarias y los stakeholders hasta el diseño y las pruebas, apoyada en herramientas formales de composición y gestión bibliográfica, constituye la base de la ingeniería de software profesional. \textbf{(2) Evidencia con cita:} Las normas ISO/IEC/IEEE 29148:2018 \cite{ieee29148}, ISO/IEC/IEEE 12207:2017 \cite{ieee12207} e ISO/IEC/IEEE 15288:2023 \cite{ieee15288} exigen que todo conjunto de requisitos sea consistente y trazable tanto hacia atrás (origen de negocio) como hacia adelante (componentes de arquitectura y verificación). \textbf{(3) Implicación para el PFC y la profesión:} La estructuración modular de este informe en \LaTeX{}, el control de versiones colaborativo en GitHub y la gestión automatizada de referencias primarias en Zotero nos brindan una línea base sólida (\textit{Baseline v1.0}) para las siguientes unidades de la asignatura, garantizando que cada módulo programado en Django y PostgreSQL responda a un requisito validado.
+\end{itemize}
+
+\section*{Anexos Documentales (Paso 2c y 2d)}
+
+\subsection*{Anexo A: Exportación Estandarizada de Fuentes Primarias en Formato IEEE Comprimido}
+A continuación se detalla el listado maestro exportado desde la colección grupal de Zotero con las 12 fuentes primarias normativas y bibliográficas empleadas y citadas a lo largo del documento:
 \begin{enumerate}
-    \item \textbf{Elicitación (Descubrimiento):} Identificación de fuentes y extracción de necesidades de los stakeholders mediante entrevistas, observación en sitio, talleres o análisis documental \cite{pohl2025, wiegers2013}.
-    \item \textbf{Análisis y Negociación:} Exploración de factibilidad, detección de conflictos entre interesados, análisis de riesgos y consenso de prioridades \cite{swebok2024, ireb2023}.
-    \item \textbf{Especificación y Documentación:} Registro estructurado de los requisitos acordados en artefactos formales (SRS, modelos conceptuales, tablas EARS) siguiendo normas estandarizadas \cite{ieee29148, mavin2009ears}.
-    \item \textbf{Validación y Verificación:} Comprobación de que los requisitos documentados reflejan exactamente lo que el cliente necesita (validación) y cumplen con las propiedades de calidad normativa (verificación) \cite{ieee29148, pohl2025}.
+    \item \textbf{[1] Norma Principal:} ISO/IEC/IEEE, \textit{ISO/IEC/IEEE 29148:2018 - Systems and software engineering -- Life cycle processes -- Requirements engineering}, IEEE, 2018. DOI: \texttt{10.1109/IEEESTD.2018.8559686}.
+    \item \textbf{[2] Ciclo de Vida de Sistemas:} ISO/IEC/IEEE, \textit{ISO/IEC/IEEE 15288:2023 - Systems and software engineering -- System life cycle processes}, IEEE, 2023.
+    \item \textbf{[3] Ciclo de Vida de Software:} ISO/IEC/IEEE, \textit{ISO/IEC/IEEE 12207:2017 - Systems and software engineering -- Software life cycle processes}, IEEE, 2017.
+    \item \textbf{[4] Modelo de Calidad SQuaRE:} International Organization for Standardization, \textit{ISO/IEC 25010:2023 - Systems and software quality requirements and evaluation (SQuaRE) -- Product quality model}, ISO, 2023.
+    \item \textbf{[5] Texto Base de IR:} K. Pohl, \textit{Requirements Engineering: Fundamentals, Principles, and Techniques}, 2.ª ed. Springer, 2025. ISBN: \texttt{978-3-662-69204-2}.
+    \item \textbf{[6] Cuerpo de Conocimiento:} H. Washizaki (Ed.), \textit{Guide to the Software Engineering Body of Knowledge (SWEBOK Guide) v4.0}, IEEE Computer Society, 2024.
+    \item \textbf{[7] Gestión de Proyectos y Stakeholders:} Project Management Institute, \textit{A Guide to the Project Management Body of Knowledge (PMBOK Guide)}, 7.ª ed. PMI, 2021.
+    \item \textbf{[8] Certificación Internacional IREB:} International Requirements Engineering Board, \textit{CPRE Foundation Level Syllabus v3.1}, IREB, 2023.
+    \item \textbf{[9] Declaración de Visión:} G. A. Moore, \textit{Crossing the Chasm: Marketing and Selling Disruptive Products to Mainstream Customers}, 3.ª ed. HarperBusiness, 2014.
+    \item \textbf{[10] Sintaxis Estructurada EARS:} A. Mavin, P. Wilkinson, A. Harwood y M. Novak, ``Easy Approach to Requirements Syntax (EARS),'' en \textit{Proc. 17th IEEE Int. Requirements Engineering Conf. (RE'09)}, 2009, pp. 317--322.
+    \item \textbf{[11] Requisitos No Funcionales:} M. Glinz, ``On Non-Functional Requirements,'' en \textit{Proc. 15th IEEE Int. Requirements Engineering Conf. (RE'07)}, 2007, pp. 21--26.
+    \item \textbf{[12] Ingeniería de Requisitos Aplicada:} K. Wiegers y J. Beatty, \textit{Software Requirements}, 3.ª ed. Microsoft Press, 2013; y E. Hull, K. Jackson y J. Dick, \textit{Requirements Engineering}, 3.ª ed. Springer, 2011.
 \end{enumerate}
 
-\textbf{Explicación Propia:} Estas cuatro actividades no conforman una cascada rígida de un solo paso, sino un ciclo continuo de refinamiento evolutivo. Durante la elicitación es común obtener deseos incompletos o contradictorios entre el dueño del negocio y los operarios; la fase de análisis filtra y negocia esas tensiones antes de plasmarlas formalmente en la especificación. Finalmente, la validación cierra el bucle asegurando mediante revisiones técnicas, prototipos o matrices de calidad que no se haya introducido ninguna distorsión entre el problema real del negocio y el documento técnico que recibirán los programadores.
+\subsection*{Anexo B: Evidencia de Gestión Bibliográfica en Zotero (Captura de Biblioteca Grupal)}
+En la Figura \ref{fig:anexo_zotero} se adjunta la captura de pantalla de la biblioteca grupal configurada en el gestor bibliográfico \textbf{Zotero}, evidenciando la organización y clasificación de las fuentes primarias obligatorias de la Unidad I (ver Anexo B).
 
-\textbf{Ejemplo Vinculado al PFC:} En el PFC ejecutamos el ciclo completo: (1) en \textit{Elicitación}, realizamos observación directa en un almacén eléctrico de Quevedo y entrevistas al cajero y propietario; (2) en \textit{Análisis}, negociamos el alcance descartando el entrenamiento de un modelo IA propio (muy costoso) a favor de consumir la API de Groq con contexto local; (3) en \textit{Especificación}, redactamos los 15 requisitos bajo sintaxis EARS e ISO 25010; y (4) en \textit{Validación}, auditamos cada requisito contra la matriz de propiedades de IEEE 29148 y prototipos de interfaz de caja.
-
-\subsubsection{Concepto 2: Actividades Transversales (Gestión de Requisitos y Trazabilidad) y Actores del Proceso}
-\textbf{Definición Formal:} De acuerdo con IREB CPRE v3.1 \cite{ireb2023}, Pohl \cite{pohl2025} y PMBOK 7.ª ed. \cite{pmbok}, la \textbf{Gestión de Requisitos} es una actividad transversal continua que abarca el control de versiones, la administración de líneas base (\textit{baselines}), el control de cambios (\textit{Change Control Board}) y el mantenimiento de la matriz de trazabilidad a lo largo del ciclo de vida. En este ecosistema interactúan actores con roles diferenciados: el \textbf{Ingeniero de Requisitos / Analista de Negocio}, el \textbf{Cliente / Patrocinador}, el \textbf{Usuario Operativo}, el \textbf{Arquitecto / Desarrollador de Software}, el \textbf{Ingeniero de Pruebas (QA)} y los \textbf{Entes Reguladores} \cite{ieee29148, wiegers2013}.
-
-\textbf{Explicación Propia:} Los requisitos son entidades vivas que cambian conforme evoluciona el mercado, la tecnología o la legislación; sin una gestión transversal disciplinada, cualquier proyecto cae rápidamente en la corrupción del alcance (\textit{scope creep}) y el caos documental. Del mismo modo, definir con exactitud las responsabilidades de cada actor humano en el proceso evita vacíos de autoridad: el cliente aprueba el presupuesto y las prioridades de negocio, el usuario valida la usabilidad operativa, el ingeniero de requisitos custodia la coherencia de la SRS y el desarrollador evalúa la viabilidad técnica y estima el esfuerzo constructivo.
-
-\textbf{Ejemplo Vinculado al PFC:} En el desarrollo de nuestra plataforma utilizamos Git y GitHub como repositorio de gestión de configuración para versionar los artefactos LaTeX (\texttt{.tex}) y la línea base de requisitos. Además, establecimos que cualquier cambio solicitado por el Propietario (ej. agregar cobros mediante código QR de Deuna) debe ser evaluado por el Analista Líder (José Gilces) mediante la matriz de trazabilidad antes de asignarse al equipo de desarrollo backend/frontend.
-
-
-\section{Sección 3: Artefactos del Procedimiento y Aplicación al PFC (Pasos 4 y 5)}
-
-\subsection{Criterio C3: Actores del Proceso y Framework de Ingeniería de Requisitos}
-El Criterio C3 de la rúbrica exige identificar los actores del proceso con roles concretos y mapear las actividades \textit{core} y transversales al sistema del PFC. La Tabla \ref{tab:actores_proceso} traduce los roles genéricos de la literatura \cite{pohl2025, ieee29148, ireb2023} a responsabilidades verificables dentro de la Plataforma POS con Asistencia Técnica IA.
-
-\begin{table}[htbp]
+\begin{figure}[htbp]
 \centering
-\scriptsize
-\caption{Actores del Proceso de Ingeniería de Requisitos y su Rol Concreto en el PFC \cite{pohl2025, ieee29148, ireb2023}}
-\label{tab:actores_proceso}
-\begin{tabularx}{\textwidth}{l Y Y Y}
-\toprule
-\textbf{Actor del proceso} & \textbf{Rol concreto en el PFC} & \textbf{Responsabilidad en el proceso} & \textbf{Artefacto que produce o valida} \\
-\midrule
-Ingeniero de Requisitos / Analista Líder & Conduce la elicitación, negocia el alcance y custodia la coherencia de la especificación & Elicitación, análisis, control de cambios y trazabilidad & SRS, catálogo REQ-01--REQ-15 y matriz de trazabilidad \\
-Cliente / Patrocinador (Propietario del almacén) & Define los objetivos de negocio, financia el proyecto y aprueba prioridades & Validación de requisitos de negocio y aprobación de la priorización MoSCoW & Declaración de visión y requisitos de negocio (BR) \\
-Usuario operativo (Cajero y Administrador) & Ejecuta los flujos reales de mostrador e inventario & Elicitación mediante entrevista y validación de aceptación & Requisitos de stakeholder (StR) y de usuario (UR) \\
-Arquitecto / Desarrollador de software & Evalúa la factibilidad técnica y estima el esfuerzo de construcción & Análisis de factibilidad y especificación de la solución & Requisitos de solución (SRS) y restricciones de diseño \\
-Ingeniero de Pruebas (QA) & Deriva los casos de prueba a partir de requisitos verificables & Verificación y validación & Matriz de verificación IEEE 29148 \\
-Ente regulador (SRI y LOPDP) & Impone las obligaciones fiscales y de protección de datos & Restricciones de conformidad legal & Requisitos de conformidad regulatoria \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-Las \textbf{actividades core} (elicitación, análisis, especificación y validación) se distribuyen entre estos actores de forma iterativa, mientras que las \textbf{actividades transversales} de gestión de requisitos, trazabilidad y control de cambios operan sobre todas las anteriores \cite{ireb2023, pmbok}. En el PFC esta separación evita vacíos de autoridad: por ejemplo, el Propietario no puede incorporar por sí solo una funcionalidad nueva, ya que todo cambio se canaliza por el Analista Líder y se audita contra la línea base de requisitos.
-
-\subsection{Criterio C4: Aplicación del Proceso de Requisitos con Artefactos Parciales}
-El Criterio C4 (25\,\% de la rúbrica) exige evidenciar la secuencia real del proceso y no solo su descripción teórica. La Tabla \ref{tab:aplicacion_proceso} documenta, para cada actividad del framework de Pohl \cite{pohl2025}, la técnica aplicada en el PFC, la decisión derivada y el artefacto parcial que la respalda.
-
-\begin{table}[htbp]
-\centering
-\scriptsize
-\caption{Aplicación del Proceso de Requisitos al PFC con Artefactos Parciales por Actividad \cite{pohl2025, ieee29148, swebok2024}}
-\label{tab:aplicacion_proceso}
-\begin{tabularx}{\textwidth}{l Y Y Y}
-\toprule
-\textbf{Actividad} & \textbf{Técnica aplicada en el PFC} & \textbf{Resultado o decisión obtenida} & \textbf{Artefacto parcial} \\
-\midrule
-Elicitación & Observación en sitio en un almacén eléctrico de Quevedo, entrevista semiestructurada a cajero y propietario, y análisis del catálogo físico & Se identificó que el cajero podía tardar hasta cinco minutos consultando catálogos impresos y desconociendo equivalencias técnicas & Registro de elicitación con necesidades priorizadas por stakeholder \\
-Análisis y negociación & Matriz de conflictos, análisis de factibilidad y priorización MoSCoW & Se resolvió el conflicto entre seguridad y latencia mediante tokens JWT por turno de caja; se descartó entrenar un modelo propio por costo & Matriz de conflictos y decisiones de alcance \\
-Especificación & Plantilla ISO/IEC/IEEE 29148, sintaxis EARS e ISO/IEC 25010 para atributos de calidad & Quince requisitos únicos (REQ-01 a REQ-15) con identificador, tipo, prioridad MoSCoW y fuente trazable & Catálogo de requisitos del Criterio C1 \\
-Validación y verificación & Revisión por pares, matriz de propiedades de IEEE 29148 y prototipo de la interfaz de caja & Los quince requisitos satisfacen las nueve propiedades del requisito individual y las cinco del conjunto & Matriz de calidad por requisito del Criterio C2 \\
-Gestión y trazabilidad (transversal) & Repositorio Git/GitHub con líneas base por entregable y control de cambios formal & Todo cambio solicitado por el Propietario se evalúa antes de asignarse al equipo de desarrollo & Historial de versiones y matriz de trazabilidad \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-El resultado es un proceso trazable de extremo a extremo: cada requisito del catálogo puede rastrearse hacia atrás hasta la necesidad elicitada y hacia adelante hasta su criterio de verificación \cite{ieee29148, swebok2024}. Esta evidencia demuestra que el equipo aplicó el proceso sobre un sistema real y no se limitó a describir la teoría.
+\includegraphics[width=0.95\textwidth]{figura/zotero_evidencia.jpg}
+\caption{Anexo B: Captura de pantalla de la colección bibliográfica grupal en Zotero con las fuentes primarias en formato IEEE.}
+\label{fig:anexo_zotero}
+\end{figure}
