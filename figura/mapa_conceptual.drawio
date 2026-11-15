@@ -1,0 +1,109 @@
+<mxfile host="Electron" agent="Mozilla/5.0">
+  <diagram id="PE1-U1-Mapa-Conceptual" name="Mapa Conceptual Unidad I">
+    <mxGraphModel dx="1542" dy="748" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="central" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1B365D;fontColor=#ffffff;strokeColor=#0F1E36;strokeWidth=2;fontSize=14;" value="&lt;b&gt;INGENIERÍA Y PROCESO DE REQUISITOS (UNIDAD I)&lt;/b&gt;&lt;br&gt;Marco Normativo: ISO/IEC/IEEE 29148:2018 [1], Pohl (2025) [5], SWEBOK v4.0 [6]" vertex="1">
+          <mxGeometry height="70" width="740" x="450" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="tema1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2B547E;fontColor=#ffffff;strokeColor=#1B365D;strokeWidth=2;fontSize=12;" value="&lt;b&gt;TEMA 1: Fundamentos de IR&lt;br&gt;y Marco Normativo [1, 6]&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="320" x="60" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="tema2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2B547E;fontColor=#ffffff;strokeColor=#1B365D;strokeWidth=2;fontSize=12;" value="&lt;b&gt;TEMA 2: Taxonomía y Propiedades&lt;br&gt;de Calidad [1, 4, 10]&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="320" x="450" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="tema3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2B547E;fontColor=#ffffff;strokeColor=#1B365D;strokeWidth=2;fontSize=12;" value="&lt;b&gt;TEMA 3: Contexto del Sistema&lt;br&gt;y 8 Perspectivas [5, 7, 9]&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="320" x="860" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="tema4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2B547E;fontColor=#ffffff;strokeColor=#1B365D;strokeWidth=2;fontSize=12;" value="&lt;b&gt;TEMA 4: Proceso, Framework&lt;br&gt;y Actores de IR [1, 5, 8]&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="320" x="1250" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="sub1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF2F7;fontColor=#111111;strokeColor=#2B547E;align=left;spacingLeft=10;fontSize=11;" value="• Mediación Adquirente-Proveedor [1]&lt;br&gt;• Articulación Ciclo de Vida (ISO 15288 [2] / 12207 [3])&lt;br&gt;• Prevención de defectos en cascada [6]&lt;br&gt;• Niveles: BRS, StRS, SyRS, SRS [1]" vertex="1">
+          <mxGeometry height="110" width="320" x="60" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="sub2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF2F7;fontColor=#111111;strokeColor=#2B547E;align=left;spacingLeft=10;fontSize=11;" value="• Requisitos Funcionales: Sintaxis EARS [10]&lt;br&gt;• Requisitos No Funcionales: ISO/IEC 25010:2023 [4]&lt;br&gt;• Priorización MoSCoW e Interfaces (UI, HW, SW, COM)&lt;br&gt;• 9 Propiedades Individuales y 5 de Conjunto [1]" vertex="1">
+          <mxGeometry height="110" width="320" x="450" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="sub3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF2F7;fontColor=#111111;strokeColor=#2B547E;align=left;spacingLeft=10;fontSize=11;" value="• Límite del Sistema, Zona Gris y Entidades Externas [5]&lt;br&gt;• Matriz Poder/Interés de Stakeholders (PMBOK 7.a [7])&lt;br&gt;• Declaración de Visión del Producto (Moore [9])&lt;br&gt;• 8 Perspectivas de Contexto de Pohl [5]" vertex="1">
+          <mxGeometry height="110" width="320" x="860" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="sub4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF2F7;fontColor=#111111;strokeColor=#2B547E;align=left;spacingLeft=10;fontSize=11;" value="• Actividades Core: Elicitación, Análisis, Especificación y Validación [1, 5, 6]&lt;br&gt;• Actividades Transversales: Gestión y Trazabilidad [8]&lt;br&gt;• Actores: Analista, Cliente, Usuario, Desarrollador, QA" vertex="1">
+          <mxGeometry height="110" width="320" x="1250" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="pfc" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;fontColor=#1B5E20;strokeColor=#2E7D32;strokeWidth=2;fontSize=12;" value="&lt;b&gt;APLICACIÓN AL PROYECTO FIN DE CURSO (PFC): PLATAFORMA POS WEB CON ASISTENTE IA GROQ (QUEVEDO)&lt;/b&gt;&lt;br&gt;• 15 Requisitos Únicos (REQ-01 a REQ-15) con EARS, ISO/IEC 25010:2023 (Latencia IA &amp;lt;= 3.0 s, SQL &amp;lt;= 250 ms) y Auditoría IEEE 29148&lt;br&gt;• 5 Entidades Externas (API Groq Cloud, Web Services SRI XSD v2.1.0, Pasarela Datafast/Deuna, Lector USB HID, Impresora ESC/POS)&lt;br&gt;• 4 Artefactos Verificables del Proceso: Acta Elicitación (ACTA-ELI-01), Matriz Análisis (ANA-01), Ficha SRS (ESP-01) y Prueba UAT (VAL-01)" vertex="1">
+          <mxGeometry height="100" width="960" x="340" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="central" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1B365D;strokeWidth=2;" target="tema1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="central" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1B365D;strokeWidth=2;" target="tema2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="central" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1B365D;strokeWidth=2;" target="tema3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="central" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1B365D;strokeWidth=2;" target="tema4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="tema1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2B547E;strokeWidth=1.5;" target="sub1" value="establece">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="tema2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2B547E;strokeWidth=1.5;" target="sub2" value="clasifica y audita">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="tema3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2B547E;strokeWidth=1.5;" target="sub3" value="delimita y explora">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="tema4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2B547E;strokeWidth=1.5;" target="sub4" value="ejecuta y gobierna">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vc1" edge="1" parent="1" source="sub1" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;fontColor=#B71C1C;" target="sub2" value="&lt;b&gt;Vínculo Cruzado 1:&lt;/b&gt; Exige criterios&lt;br&gt;de verificabilidad y trazabilidad [1]">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="220" y="460" />
+              <mxPoint x="610" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vc2" edge="1" parent="1" source="sub3" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;fontColor=#B71C1C;" target="sub2" value="&lt;b&gt;Vínculo Cruzado 2:&lt;/b&gt; Las 8 perspectivas hacen&lt;br&gt;emerger RNF, Restricciones e Interfaces [4, 5]">
+          <mxGeometry relative="1" x="-0.1111" y="-75" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="815" y="365" />
+              <mxPoint x="815" y="365" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vc3" edge="1" parent="1" source="sub3" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;fontColor=#B71C1C;" target="sub4" value="&lt;b&gt;Vínculo Cruzado 3:&lt;/b&gt; Los Stakeholders guían&lt;br&gt;la Elicitación, Negociación y Validación [5, 7]">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1020" y="460" />
+              <mxPoint x="1410" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vc4" edge="1" parent="1" source="sub4" style="edgeStyle=orthogonalEdgeStyle;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0D47A1;strokeWidth=2;dashed=1;fontColor=#0D47A1;" target="sub2" value="&lt;b&gt;Vínculo Cruzado 4:&lt;/b&gt; La Validación verifica las Propiedades de Calidad IEEE 29148 en la SRS [1, 8]">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1410" y="510" />
+              <mxPoint x="610" y="510" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1" edge="1" parent="1" source="sub1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2E7D32;dashed=1;" target="pfc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2" edge="1" parent="1" source="sub2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2E7D32;dashed=1;" target="pfc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p3" edge="1" parent="1" source="sub3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2E7D32;dashed=1;" target="pfc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4" edge="1" parent="1" source="sub4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2E7D32;dashed=1;" target="pfc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,54 @@
+\section{Sección 0: Conformación del Equipo y Selección del Sistema (Paso 1)}
+\subsection{Roles y Nominación Oficial del Equipo}
+De acuerdo con los lineamientos de la Guía de Práctica Experimental y los Gatekeepers de evaluación (\textit{G2: Todos los integrantes nominados}), en la Tabla \ref{tab:integrantes} se registra la nominación oficial del equipo de trabajo, sus números de cédula de ciudadanía, correos electrónicos institucionales de la Universidad Técnica Estatal de Quevedo (UTEQ) y los roles técnicos desempeñados durante el desarrollo del proyecto \cite{ieee29148, pmbok}.
+\begin{table}[htbp]
+	\centering
+	\caption{Nominación Oficial de Integrantes y Asignación de Roles del Equipo}
+	\label{tab:integrantes}
+	\begin{tabularx}{\textwidth}{l l l Y}
+		\toprule
+		\textbf{Integrante (Apellidos y Nombres)} & \textbf{Cédula (CI)} & \textbf{Correo Institucional} & \textbf{Rol Asignado y Responsabilidades} \\
+		\midrule
+		Gilces Carranza José Ignacio & 1251059240 & \texttt{jgilcesc3@uteq.edu.ec} & \textbf{Analista Líder e Investigador B:} Coordina la integración técnica, verifica la coherencia argumental y citas IEEE, desarrolla las secciones 2.3--2.4 y lidera la especificación EARS y evaluación de propiedades (C1, C2). \\
+		Vélez Vinces Jostin Gustavo & 1316917838 & \texttt{jvelezv10@uteq.edu.ec} & \textbf{Investigador A:} Desarrolla las secciones 2.1--2.2 del fundamento teórico, define el límite del sistema, la declaración de visión de Moore, el análisis de las 8 perspectivas de Pohl y el mapa conceptual. \\
+		Robinson Espinoza Jeanpierre & 1722574223 & \texttt{jrobinsone@uteq.edu.ec} & \textbf{Investigador C y Documentador:} Desarrolla las secciones 2.5--2.6, estructura el mapeo de actores y artefactos del proceso (C3, C4), gestiona el gestor bibliográfico y maqueta el documento final bajo estándar IEEE. \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+\subsection{Descripción del Sistema del Proyecto Fin de Curso (PFC)}
+El sistema seleccionado para el Proyecto Fin de Curso (PFC) consiste en una \textbf{Plataforma de Ventas con Módulo de Recomendación basado en Inteligencia Artificial} orientada a establecimientos comercializadores de suministros y materiales eléctricos en el cantón Quevedo, provincia de Los Ríos. El sistema resuelve la problemática crítica de facturación lenta en horas pico, interfaces de usuario poco ergonómicas y pérdida de ventas ocasionada por personal de mostrador sin formación electrotécnica para recomendar componentes compatibles o sustitutos seguros (como disyuntores termomagnéticos, contactores, conductores por calibre o luminarias industriales). Los usuarios principales son los cajeros (atención al cliente), el administrador del almacén, el propietario del establecimiento, los clientes activos y los auditores tributarios/contables. El contexto organizacional demanda alta disponibilidad operativa, cumplimiento estricto de facturación electrónica ante el Servicio de Rentas Internas (SRI) y reducción drástica de errores de digitación.
+\subsection{Identificación y Clasificación de Stakeholders (Matriz Poder/Interés PMBOK)}
+Siguiendo el marco de gobernanza de interesados del \textit{PMBOK Guide} (7.ª edición) \cite{pmbok} y las directrices de identificación de fuentes de requisitos de ISO/IEC/IEEE 29148:2018 \cite{ieee29148}, se identifican y clasifican los cinco stakeholders principales del sistema en la Tabla \ref{tab:stakeholders}:
+\begin{table}[htbp]
+	\centering
+	\scriptsize
+	\caption{Matriz de Poder/Interés y Estrategia de Gestión de Stakeholders del PFC \cite{pmbok}}
+	\label{tab:stakeholders}
+	\begin{tabularx}{\textwidth}{l >{\raggedright\arraybackslash}p{0.16\textwidth} >{\raggedright\arraybackslash}p{0.15\textwidth} >{\raggedright\arraybackslash}p{0.14\textwidth} Y}
+		\toprule
+		\textbf{ID} & \textbf{Stakeholder} & \textbf{Nivel Poder / Interés} & \textbf{Estrategia PMBOK} & \textbf{Perfil Operativo y Necesidades Primarias en el PFC} \\
+		\midrule
+		SH-01 & Cajero (Atención al Cliente) & Bajo Poder / Alto Interés & Mantener Informado & Actor interno operativo que interactúa continuamente con la plataforma de ventas. Sufre sobrecarga cognitiva por el sistema actual y requiere atajos de teclado, lectura rápida por código de barras y sugerencias técnicas inmediatas del módulo de IA. \\
+		SH-02 & Administrador del Local & Alto Poder / Alto Interés & Gestionar Atentamente & Actor interno táctico responsable del control de inventario en tiempo real, actualización de listas de precios, gestión de proveedores eléctricos y supervisión del rendimiento de ventas diarias. \\
+		SH-03 & Propietario del Establecimiento & Alto Poder / Medio Interés & Mantener Satisfecho & Patrocinador financiero (\textit{Sponsor}) que autoriza el presupuesto del proyecto. Requiere reportes ejecutivos de rentabilidad, retorno de inversión (ROI), control de mermas y reducción en tiempos de atención. \\
+		SH-04 & Cliente Activo / Comprador & Bajo Poder / Alto Interés & Mantener Informado & Actor externo (técnico electricista o consumidor final) que demanda cotizaciones ágiles, facturación electrónica inmediata y asesoría confiable sobre compatibilidad de voltaje, amperaje y normativas de seguridad. \\
+		SH-05 & Auditor Contable / SRI & Alto Poder / Bajo Interés & Mantener Satisfecho & Actor regulador e inspector interno/externo que exige trazabilidad inmutable de transacciones, anulaciones, notas de crédito y conformidad con la normativa vigente de facturación electrónica del SRI. \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+\subsection{Clasificación Técnica del Sistema PFC y Justificación}
+Con base en la taxonomía de sistemas descrita en la Sección 2.5 e ISO/IEC/IEEE 15288:2023 \cite{ieee15288, pohl2025}, el Proyecto Fin de Curso (PFC) se clasifica como un \textbf{Sistema de Información Empresarial Transaccional Intensivo en Software acoplado a un Subsistema Adaptativo de Inteligencia Artificial Híbrida}.
+\textbf{Justificación Conceptual:}
+\begin{enumerate}
+	\item \textbf{Naturaleza Transaccional Intensiva en Software:} El núcleo operativo del sistema gestiona el procesamiento concurrente de datos comerciales estructurados (facturación, kardex de inventario, cuentas por cobrar y arqueo de caja) exigiendo atomicidad, consistencia, aislamiento y durabilidad en el repositorio central de datos \cite{ieee12207, swebok2024}.
+	\item \textbf{Naturaleza Adaptativa e Inteligente:} A diferencia de una plataforma de ventas tradicional puramente determinista, el sistema integra un subsistema de inferencia de Inteligencia Artificial para el procesamiento de lenguaje natural \cite{pohl2025}. Este módulo interpreta consultas sobre especificaciones eléctricas (ej. cálculo de carga o reemplazo de un relé térmico) y genera recomendaciones contextualizadas acotadas estrictamente a las existencias reales del catálogo local.
+	\item \textbf{Acoplamiento con el Entorno Físico y Regulatorio:} El sistema interactúa con periféricos físicos de captura e impresión en mostrador y con los servicios gubernamentales de autorización tributaria del SRI Ecuador, requiriendo continuidad operativa ante eventuales interrupciones de conectividad externa \cite{iso25010}.
+\end{enumerate}
+\section{Paso 2: Revisión Bibliográfica y Gestión de Fuentes Primarias}
+En estricto cumplimiento de la directriz académica de la asignatura, todas las afirmaciones teóricas y metodológicas de este documento están respaldadas por fuentes primarias normativas y científicas registradas mediante gestor bibliográfico bajo el estilo de citación \textbf{IEEE comprimido} \cite{ieee29148, pohl2025, swebok2024}.
+\begin{itemize}
+	\item \textbf{Normativa Estructural de Ingeniería de Sistemas y Software:} Se emplea como pilar rector el estándar internacional \textbf{ISO/IEC/IEEE 29148:2018} \cite{ieee29148} para la estructura de procesos de requisitos, propiedades de calidad y plantillas de especificación (SRS/StRS/SyRS), articulado con \textbf{ISO/IEC/IEEE 15288:2023} \cite{ieee15288} para procesos de ciclo de vida de sistemas e \textbf{ISO/IEC/IEEE 12207:2017} \cite{ieee12207} para procesos de ciclo de vida del software.
+	\item \textbf{Estándar de Calidad de Producto:} Se incorpora la versión vigente \textbf{ISO/IEC 25010:2023 (SQuaRE)} \cite{iso25010} para categorizar y cuantificar rigurosamente los Requisitos No Funcionales (RNF) en sus características de eficiencia de desempeño, compatibilidad, capacidad de interacción (usabilidad), fiabilidad, seguridad y mantenibilidad.
+	\item \textbf{Cuerpos de Conocimiento y Literatura Especializada:} Se fundamenta el marco conceptual y las ocho perspectivas de contexto en la obra de \textbf{Klaus Pohl (2025)} \cite{pohl2025}, el cuerpo de conocimiento \textbf{SWEBOK Guide v4.0 (2024)} editado por H. Washizaki \cite{swebok2024}, el estándar de gestión de proyectos \textbf{PMBOK Guide 7.ª ed.} \cite{pmbok} y el sílabo de certificación internacional \textbf{IREB CPRE Foundation Level v3.1} \cite{ireb2023}. Adicionalmente, se integran las fuentes seminales de \textbf{Moore (2014)} \cite{moore2014} para la declaración de visión del producto, \textbf{Mavin et al. (2009)} \cite{mavin2009ears} para la sintaxis estructurada EARS, \textbf{Glinz (2007)} \cite{glinz2007nfr} para la taxonomía de requisitos no funcionales, y los textos clásicos de \textbf{Wiegers \& Beatty (2013)} \cite{wiegers2013} y \textbf{Hull, Jackson \& Dick (2011)} \cite{hull2011}.
+\end{itemize}
+La exportación completa de las referencias bibliográficas en formato IEEE se presenta en el \textbf{Anexo A} (ver Anexo A), mientras que la evidencia gráfica de la colección estructurada en la biblioteca digital se documenta en el \textbf{Anexo B} (ver Anexo B).
